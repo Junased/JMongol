@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JMongolModel", "JMongolMode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JMongolDBHelp", "JMongolDBHelp\JMongolDBHelp.csproj", "{7CDCC27A-8D0D-4529-9ABC-005499E6CD03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JMongolDal", "JMongolDal\JMongolDal.csproj", "{DC216986-31BF-4EAA-8920-20C8A757931C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7CDCC27A-8D0D-4529-9ABC-005499E6CD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CDCC27A-8D0D-4529-9ABC-005499E6CD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CDCC27A-8D0D-4529-9ABC-005499E6CD03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC216986-31BF-4EAA-8920-20C8A757931C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC216986-31BF-4EAA-8920-20C8A757931C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC216986-31BF-4EAA-8920-20C8A757931C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC216986-31BF-4EAA-8920-20C8A757931C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
