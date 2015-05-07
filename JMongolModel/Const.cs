@@ -188,7 +188,7 @@ namespace JMongolModel
         /// <summary>
         /// Order连接字符串
         /// </summary>
-        public const string Order = " Order by ";
+        public const string OrderBy = " Order by ";
         /// <summary>
         /// Desc连接字符串
         /// </summary>
@@ -261,6 +261,114 @@ namespace JMongolModel
         /// TableName字符串
         /// </summary>
         public const string TableName = "TableName";
+
+        /// <summary>
+        /// AS字符串
+        /// </summary>
+        public const string AS = " AS ";
+
+        #endregion
+
+        #region 数据库表常用字段名称
+        /// <summary>
+        /// ID字符串
+        /// </summary>
+        public const string ID = " ID ";
+        /// <summary>
+        ///SortID字符串
+        /// </summary>
+        public const string SortID = " SortID ";
+        /// <summary>
+        /// CreateID字符串
+        /// </summary>
+        public const string CreateID = " CreateID ";
+        /// <summary>
+        /// CreateDate字符串
+        /// </summary>
+        public const string CreateDate = " CreateDate ";
+        /// <summary>
+        /// UpdateID字符串
+        /// </summary>
+        public const string UpdateID = " UpdateID ";
+        /// <summary>
+        /// UpdateDate字符串
+        /// </summary>
+        public const string UpdateDate = " UpdateDate ";
+        /// <summary>
+        /// VersionFlag字符串
+        /// </summary>
+        public const string VersionFlag = " VersionFlag ";
+        /// <summary>
+        /// DeleteFlag字符串
+        /// </summary>
+        public const string DeleteFlag = " DeleteFlag ";
+
+        /// <summary>
+        /// UserID字符串
+        /// </summary>
+        public const string UserID = " UserID ";
+        /// <summary>
+        /// UserName字符串
+        /// </summary>
+        public const string UserName = " UserName ";
+        /// <summary>
+        /// MemberName字符串
+        /// </summary>
+        public const string MemberName = " MemberName ";
+        /// <summary>
+        /// <summary>
+        /// UserIP字符串
+        /// </summary>
+        public const string UserIP = " UserIP ";
+        /// <summary>
+        /// DeptID字符串
+        /// </summary>
+        public const string DeptID = " DeptID ";
+        /// <summary>
+        /// RoleID字符串
+        /// </summary>
+        public const string RoleID = " RoleID ";
+        /// <summary>
+        /// TypeID字符串
+        /// </summary>
+        public const string TypeID = " TypeID ";
+        /// <summary>
+        /// PopedomList字符串
+        /// </summary>
+        public const string PopedomList = " PopedomList ";
+        /// <summary>
+        /// 换行字符串Char(13) + Char(10)
+        /// </summary>
+        public const string NewLine = " Char(13) + Char(10) ";
+        /// <summary>
+        /// Flag字符串
+        /// </summary>
+        public const string Flag = " Flag ";
+
+        /// <summary>
+        /// IsSend字符串
+        /// </summary>
+        public const string IsSend = " IsSend ";
+
+        /// <summary>
+        /// IsEffect字符串
+        /// </summary>
+        public const string IsEffect = " IsEffect ";
+
+        /// <summary>
+        /// True字符串
+        /// </summary>
+        public const string TrueFlag = " True ";
+
+        /// <summary>
+        ///false字符串
+        /// </summary>
+        public const string FalseFlag = " False ";
+
+        /// <summary>
+        ///UserFlag字符串
+        /// </summary>
+        public const string UserFlag = " UserFlag ";
 
         #endregion
         
