@@ -8,11 +8,79 @@ using System.Data;
 
 using JMongolDBHelp;
 using JMongolModel;
+using JMongolDal.Config;
 
 namespace JMongolDal
 {
     public class BaseDal
     {
+
+        #region 数据update
+
+        public virtual bool Update(DataRow row,int userID,string strUserIP,string moduleName)
+        {
+            bool b = false;
+            if (row.RowState == DataRowState.Unchanged) return b;
+            this.SetRowUpdateValue(row, userID);
+            DataRowState state = row.RowState;
+            if (state == DataRowState.Added)
+            {
+                //添加数据
+                b = AdapterDBHelp.Update(row);
+                //记录日志
+                this.WriteLog(row, Common.LogType.Add, userID, strUserIP, moduleName);
+            }
+            else if (state == DataRowState.Deleted)
+            {
+                //记录日志
+                this.WriteLog(row, Common.LogType.Delete, userID, strUserIP, moduleName);
+                //添加数据
+                b = AdapterDBHelp.Update(row);
+            }
+            else
+            {
+                //记录日志
+                this.WriteLog(row, Common.LogType.Update, userID, strUserIP, moduleName);
+                //添加数据
+                b = AdapterDBHelp.Update(row);
+            }
+            row.AcceptChanges();
+            return b;
+        }
+
+        protected virtual DataRow SetRowUpdateValue(DataRow row,int userID)
+        {
+            if (row.RowState == DataRowState.Detached || row.RowState == DataRowState.Added)
+            {
+                if (row.Table.Columns.IndexOf(Const.SortID) >= 0)
+                {
+                    if (row[Const.SortID] == DBNull.Value || row[Const.SortID] == null)
+                        row[Const.SortID] = 0;
+                }
+
+                if (row.Table.Columns.IndexOf(Const.CreateID) >= 0)
+                    row[Const.CreateID] = userID;
+
+                if (row.Table.Columns.IndexOf(Const.CreateDate) >= 0)
+                    row[Const.CreateDate] = DateTime.Now;
+
+                if (row.Table.Columns.IndexOf(Const.DeleteFlag) >= 0)
+                    row[Const.DeleteFlag] = false;
+            }
+            if (row.Table.Columns.IndexOf(Const.UpdateID) >= 0)
+                row[Const.UpdateID] = userID;
+            if (row.Table.Columns.IndexOf(Const.UpdateDate) >= 0)
+                row[Const.UpdateDate] = DateTime.Now;
+
+            if (row.RowState == DataRowState.Detached)
+            {
+                DataTable table = row.Table;
+                table.Rows.Add(row);
+            }
+            return row;
+        }
+        #endregion
+
 
         public virtual string GetSQLString(string strTabelName,string strSQLWhere,string strSQLOrder,int start,int count)
         {
@@ -55,6 +123,24 @@ namespace JMongolDal
             return sqlString.Trim();
         }
 
+
+        #region 记录日志
+        /// <summary>
+        /// 系统操作自动记录日志
+        /// </summary>
+        /// <typeparam name="T">强类型数据行</typeparam>
+        /// <param name="t">带操作的强类型数据行</param>
+        /// <param name="logType">日志操作类型</param>
+        /// <param name="userID">当前操作的用户ID</param>
+        public void WriteLog<T>(T t, Common.LogType logType, int userID, string userIP, string moduleName) where T : DataRow
+        {
+            //当前非实名用户操作，则不记载日志
+            if (userID == 0) return;
+
+            LogDal rule = new LogDal();
+            rule.WriteLog(t, logType, userID, userIP, moduleName);
+        }
+        #endregion
 
         #region 常用属性
 

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Common.cs" />
     <Compile Include="Const.cs" />
+    <Compile Include="Convert.cs" />
     <Compile Include="Entity\ConfigDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -15,5 +15,44 @@ namespace JMongolModel
         {
             return "";
         }
+
+
+
+        #region 日志类型
+        /// <summary>
+        /// 日志类型
+        /// </summary>
+        public enum LogType
+        {
+            /// <summary>
+            /// 登录
+            /// </summary>
+            LogIn,
+            /// <summary>
+            /// 注销
+            /// </summary>
+            LogOut,
+            /// <summary>
+            /// 添加
+            /// </summary>
+            Add,
+            /// <summary>
+            /// 更新
+            /// </summary>
+            Update,
+            /// <summary>
+            /// 删除
+            /// </summary>
+            Delete,
+            /// <summary>
+            /// 假删
+            /// </summary>
+            LogicDelete,
+            /// <summary>
+            /// 显示
+            /// </summary>
+            View
+        }
+        #endregion
     }
 }
