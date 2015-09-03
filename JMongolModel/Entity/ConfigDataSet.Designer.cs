@@ -5029,6 +5029,50 @@ SELECT SortID, ID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Dele
             tableMapping.ColumnMappings.Add("Remark", "Remark");
             tableMapping.ColumnMappings.Add("ID", "ID");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [tMessage] WHERE (([ID] = @Original_ID) AND ([VersionFlag] = @Origina" +
+                "l_VersionFlag))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VersionFlag", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VersionFlag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [tMessage] ([SortID], [CreateDate], [CreateID], [UpdateID], [UpdateDate], [DeleteFlag], [LanguageType], [MessageType], [MessageCode], [MessageContent], [MessageFlag], [Remark]) VALUES (@SortID, @CreateDate, @CreateID, @UpdateID, @UpdateDate, @DeleteFlag, @LanguageType, @MessageType, @MessageCode, @MessageContent, @MessageFlag, @Remark);
+SELECT ID, SortID, CreateDate, CreateID, UpdateID, UpdateDate, VersionFlag, DeleteFlag, LanguageType, MessageType, MessageCode, MessageContent, MessageFlag, Remark FROM tMessage WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SortID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SortID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DeleteFlag", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DeleteFlag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LanguageType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LanguageType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageCode", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageContent", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageContent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageFlag", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageFlag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Remark", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remark", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [tMessage] SET [SortID] = @SortID, [CreateDate] = @CreateDate, [CreateID] = @CreateID, [UpdateID] = @UpdateID, [UpdateDate] = @UpdateDate, [DeleteFlag] = @DeleteFlag, [LanguageType] = @LanguageType, [MessageType] = @MessageType, [MessageCode] = @MessageCode, [MessageContent] = @MessageContent, [MessageFlag] = @MessageFlag, [Remark] = @Remark WHERE (([ID] = @Original_ID) AND ([VersionFlag] = @Original_VersionFlag));
+SELECT ID, SortID, CreateDate, CreateID, UpdateID, UpdateDate, VersionFlag, DeleteFlag, LanguageType, MessageType, MessageCode, MessageContent, MessageFlag, Remark FROM tMessage WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SortID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SortID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DeleteFlag", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DeleteFlag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LanguageType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LanguageType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageCode", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageContent", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageContent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageFlag", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageFlag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Remark", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remark", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VersionFlag", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VersionFlag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5072,6 +5116,35 @@ SELECT SortID, ID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Dele
             ConfigDataSet.tMessageDataTable dataTable = new ConfigDataSet.tMessageDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ConfigDataSet.tMessageDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ConfigDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "tMessage");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
         }
     }
     
@@ -5336,6 +5409,8 @@ SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Dele
         
         private tExceptionTableAdapter _tExceptionTableAdapter;
         
+        private tMessageTableAdapter _tMessageTableAdapter;
+        
         private tExceptionListTableAdapter _tExceptionListTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
@@ -5400,6 +5475,20 @@ SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Dele
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
+        public tMessageTableAdapter tMessageTableAdapter {
+            get {
+                return this._tMessageTableAdapter;
+            }
+            set {
+                this._tMessageTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
         public tExceptionListTableAdapter tExceptionListTableAdapter {
             get {
                 return this._tExceptionListTableAdapter;
@@ -5440,6 +5529,10 @@ SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Dele
                             && (this._tExceptionTableAdapter.Connection != null))) {
                     return this._tExceptionTableAdapter.Connection;
                 }
+                if (((this._tMessageTableAdapter != null) 
+                            && (this._tMessageTableAdapter.Connection != null))) {
+                    return this._tMessageTableAdapter.Connection;
+                }
                 if (((this._tExceptionListTableAdapter != null) 
                             && (this._tExceptionListTableAdapter.Connection != null))) {
                     return this._tExceptionListTableAdapter.Connection;
@@ -5464,6 +5557,9 @@ SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Dele
                     count = (count + 1);
                 }
                 if ((this._tExceptionTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._tMessageTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._tExceptionListTableAdapter != null)) {
@@ -5504,6 +5600,15 @@ SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Dele
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tExceptionTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tMessageTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tMessage.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tMessageTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -5550,6 +5655,14 @@ SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Dele
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._tMessageTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tMessage.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tMessageTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._tExceptionListTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.tExceptionList.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -5573,6 +5686,14 @@ SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Dele
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tExceptionListTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._tMessageTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tMessage.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tMessageTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -5651,6 +5772,10 @@ SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Dele
                         && (this.MatchTableAdapterConnection(this._tExceptionTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
             }
+            if (((this._tMessageTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._tMessageTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
+            }
             if (((this._tExceptionListTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._tExceptionListTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
@@ -5711,6 +5836,15 @@ SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Dele
                     if (this._tExceptionTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._tExceptionTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tExceptionTableAdapter.Adapter);
+                    }
+                }
+                if ((this._tMessageTableAdapter != null)) {
+                    revertConnections.Add(this._tMessageTableAdapter, this._tMessageTableAdapter.Connection);
+                    this._tMessageTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._tMessageTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._tMessageTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._tMessageTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._tMessageTableAdapter.Adapter);
                     }
                 }
                 if ((this._tExceptionListTableAdapter != null)) {
@@ -5791,6 +5925,10 @@ SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Dele
                 if ((this._tExceptionTableAdapter != null)) {
                     this._tExceptionTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tExceptionTableAdapter]));
                     this._tExceptionTableAdapter.Transaction = null;
+                }
+                if ((this._tMessageTableAdapter != null)) {
+                    this._tMessageTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tMessageTableAdapter]));
+                    this._tMessageTableAdapter.Transaction = null;
                 }
                 if ((this._tExceptionListTableAdapter != null)) {
                     this._tExceptionListTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tExceptionListTableAdapter]));
