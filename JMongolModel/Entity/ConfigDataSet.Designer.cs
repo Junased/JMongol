@@ -28,6 +28,8 @@ namespace JMongolModel.Entity {
         
         private tLogListDataTable tabletLogList;
         
+        private tExceptionDataTable tabletException;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -61,6 +63,9 @@ namespace JMongolModel.Entity {
                 }
                 if ((ds.Tables["tLogList"] != null)) {
                     base.Tables.Add(new tLogListDataTable(ds.Tables["tLogList"]));
+                }
+                if ((ds.Tables["tException"] != null)) {
+                    base.Tables.Add(new tExceptionDataTable(ds.Tables["tException"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -97,6 +102,16 @@ namespace JMongolModel.Entity {
         public tLogListDataTable tLogList {
             get {
                 return this.tabletLogList;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tExceptionDataTable tException {
+            get {
+                return this.tabletException;
             }
         }
         
@@ -173,6 +188,9 @@ namespace JMongolModel.Entity {
                 if ((ds.Tables["tLogList"] != null)) {
                     base.Tables.Add(new tLogListDataTable(ds.Tables["tLogList"]));
                 }
+                if ((ds.Tables["tException"] != null)) {
+                    base.Tables.Add(new tExceptionDataTable(ds.Tables["tException"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -218,6 +236,12 @@ namespace JMongolModel.Entity {
                     this.tabletLogList.InitVars();
                 }
             }
+            this.tabletException = ((tExceptionDataTable)(base.Tables["tException"]));
+            if ((initTable == true)) {
+                if ((this.tabletException != null)) {
+                    this.tabletException.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -232,6 +256,8 @@ namespace JMongolModel.Entity {
             base.Tables.Add(this.tabletLog);
             this.tabletLogList = new tLogListDataTable();
             base.Tables.Add(this.tabletLogList);
+            this.tabletException = new tExceptionDataTable();
+            base.Tables.Add(this.tabletException);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -243,6 +269,12 @@ namespace JMongolModel.Entity {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializetLogList() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializetException() {
             return false;
         }
         
@@ -306,6 +338,9 @@ namespace JMongolModel.Entity {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void tLogListRowChangeEventHandler(object sender, tLogListRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void tExceptionRowChangeEventHandler(object sender, tExceptionRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -626,17 +661,22 @@ namespace JMongolModel.Entity {
                 this.columnOID.ReadOnly = true;
                 this.columnOID.Unique = true;
                 this.columnSortID.AllowDBNull = false;
+                this.columnSortID.DefaultValue = ((int)(0));
                 this.columnCreateID.AllowDBNull = false;
+                this.columnCreateID.DefaultValue = ((int)(0));
                 this.columnCreateDate.AllowDBNull = false;
                 this.columnUpdateID.AllowDBNull = false;
+                this.columnUpdateID.DefaultValue = ((int)(0));
                 this.columnUpdateDate.AllowDBNull = false;
                 this.columnVersionFlag.ReadOnly = true;
                 this.columnDeleteFlag.AllowDBNull = false;
+                this.columnDeleteFlag.DefaultValue = ((bool)(false));
                 this.columnLogType.MaxLength = 10;
                 this.columnLogIP.MaxLength = 128;
                 this.columnSourceContent.MaxLength = 4000;
                 this.columnUpdateContent.MaxLength = 4000;
                 this.columnModuleName.MaxLength = 20;
+                this.columnRemark.DefaultValue = ((string)(""));
                 this.columnRemark.MaxLength = 200;
             }
             
@@ -985,6 +1025,7 @@ namespace JMongolModel.Entity {
                 this.columnOID.ReadOnly = true;
                 this.columnOID.Unique = true;
                 this.columnCreateID.AllowDBNull = false;
+                this.columnCreateID.DefaultValue = ((int)(0));
                 this.columnCreateDate.AllowDBNull = false;
                 this.columnLogType.MaxLength = 10;
                 this.columnLogIP.MaxLength = 128;
@@ -1076,6 +1117,414 @@ namespace JMongolModel.Entity {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "tLogListDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tExceptionDataTable : global::System.Data.TypedTableBase<tExceptionRow> {
+            
+            private global::System.Data.DataColumn columnSortID;
+            
+            private global::System.Data.DataColumn columnOID;
+            
+            private global::System.Data.DataColumn columnCreateID;
+            
+            private global::System.Data.DataColumn columnCreateDate;
+            
+            private global::System.Data.DataColumn columnUpdateID;
+            
+            private global::System.Data.DataColumn columnUpdateDate;
+            
+            private global::System.Data.DataColumn columnVersionFlag;
+            
+            private global::System.Data.DataColumn columnDeleteFlag;
+            
+            private global::System.Data.DataColumn columnExceptionTitle;
+            
+            private global::System.Data.DataColumn columnExceptionSource;
+            
+            private global::System.Data.DataColumn columnExceptionContent;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tExceptionDataTable() {
+                this.TableName = "tException";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tExceptionDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected tExceptionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SortIDColumn {
+                get {
+                    return this.columnSortID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OIDColumn {
+                get {
+                    return this.columnOID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CreateIDColumn {
+                get {
+                    return this.columnCreateID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CreateDateColumn {
+                get {
+                    return this.columnCreateDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UpdateIDColumn {
+                get {
+                    return this.columnUpdateID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UpdateDateColumn {
+                get {
+                    return this.columnUpdateDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn VersionFlagColumn {
+                get {
+                    return this.columnVersionFlag;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DeleteFlagColumn {
+                get {
+                    return this.columnDeleteFlag;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ExceptionTitleColumn {
+                get {
+                    return this.columnExceptionTitle;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ExceptionSourceColumn {
+                get {
+                    return this.columnExceptionSource;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ExceptionContentColumn {
+                get {
+                    return this.columnExceptionContent;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tExceptionRow this[int index] {
+                get {
+                    return ((tExceptionRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tExceptionRowChangeEventHandler tExceptionRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tExceptionRowChangeEventHandler tExceptionRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tExceptionRowChangeEventHandler tExceptionRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tExceptionRowChangeEventHandler tExceptionRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddtExceptionRow(tExceptionRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tExceptionRow AddtExceptionRow(int SortID, int OID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, byte[] VersionFlag, bool DeleteFlag, string ExceptionTitle, string ExceptionSource, string ExceptionContent) {
+                tExceptionRow rowtExceptionRow = ((tExceptionRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        SortID,
+                        OID,
+                        CreateID,
+                        CreateDate,
+                        UpdateID,
+                        UpdateDate,
+                        VersionFlag,
+                        DeleteFlag,
+                        ExceptionTitle,
+                        ExceptionSource,
+                        ExceptionContent};
+                rowtExceptionRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtExceptionRow);
+                return rowtExceptionRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tExceptionRow FindByOID(int OID) {
+                return ((tExceptionRow)(this.Rows.Find(new object[] {
+                            OID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                tExceptionDataTable cln = ((tExceptionDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tExceptionDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnSortID = base.Columns["SortID"];
+                this.columnOID = base.Columns["OID"];
+                this.columnCreateID = base.Columns["CreateID"];
+                this.columnCreateDate = base.Columns["CreateDate"];
+                this.columnUpdateID = base.Columns["UpdateID"];
+                this.columnUpdateDate = base.Columns["UpdateDate"];
+                this.columnVersionFlag = base.Columns["VersionFlag"];
+                this.columnDeleteFlag = base.Columns["DeleteFlag"];
+                this.columnExceptionTitle = base.Columns["ExceptionTitle"];
+                this.columnExceptionSource = base.Columns["ExceptionSource"];
+                this.columnExceptionContent = base.Columns["ExceptionContent"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnSortID = new global::System.Data.DataColumn("SortID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSortID);
+                this.columnOID = new global::System.Data.DataColumn("OID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOID);
+                this.columnCreateID = new global::System.Data.DataColumn("CreateID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCreateID);
+                this.columnCreateDate = new global::System.Data.DataColumn("CreateDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCreateDate);
+                this.columnUpdateID = new global::System.Data.DataColumn("UpdateID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUpdateID);
+                this.columnUpdateDate = new global::System.Data.DataColumn("UpdateDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUpdateDate);
+                this.columnVersionFlag = new global::System.Data.DataColumn("VersionFlag", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVersionFlag);
+                this.columnDeleteFlag = new global::System.Data.DataColumn("DeleteFlag", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDeleteFlag);
+                this.columnExceptionTitle = new global::System.Data.DataColumn("ExceptionTitle", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExceptionTitle);
+                this.columnExceptionSource = new global::System.Data.DataColumn("ExceptionSource", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExceptionSource);
+                this.columnExceptionContent = new global::System.Data.DataColumn("ExceptionContent", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExceptionContent);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnOID}, true));
+                this.columnSortID.AllowDBNull = false;
+                this.columnOID.AllowDBNull = false;
+                this.columnOID.Unique = true;
+                this.columnCreateID.AllowDBNull = false;
+                this.columnCreateDate.AllowDBNull = false;
+                this.columnUpdateID.AllowDBNull = false;
+                this.columnUpdateDate.AllowDBNull = false;
+                this.columnVersionFlag.ReadOnly = true;
+                this.columnDeleteFlag.AllowDBNull = false;
+                this.columnExceptionTitle.MaxLength = 100;
+                this.columnExceptionSource.MaxLength = 1000;
+                this.columnExceptionContent.MaxLength = 2147483647;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tExceptionRow NewtExceptionRow() {
+                return ((tExceptionRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tExceptionRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(tExceptionRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tExceptionRowChanged != null)) {
+                    this.tExceptionRowChanged(this, new tExceptionRowChangeEvent(((tExceptionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tExceptionRowChanging != null)) {
+                    this.tExceptionRowChanging(this, new tExceptionRowChangeEvent(((tExceptionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tExceptionRowDeleted != null)) {
+                    this.tExceptionRowDeleted(this, new tExceptionRowChangeEvent(((tExceptionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tExceptionRowDeleting != null)) {
+                    this.tExceptionRowDeleting(this, new tExceptionRowChangeEvent(((tExceptionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovetExceptionRow(tExceptionRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ConfigDataSet ds = new ConfigDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tExceptionDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1227,11 +1676,11 @@ namespace JMongolModel.Entity {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string LogType {
                 get {
-                    try {
-                        return ((string)(this[this.tabletLog.LogTypeColumn]));
+                    if (this.IsLogTypeNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“tLog”中列“LogType”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tabletLog.LogTypeColumn]));
                     }
                 }
                 set {
@@ -1243,11 +1692,11 @@ namespace JMongolModel.Entity {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string LogIP {
                 get {
-                    try {
-                        return ((string)(this[this.tabletLog.LogIPColumn]));
+                    if (this.IsLogIPNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“tLog”中列“LogIP”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tabletLog.LogIPColumn]));
                     }
                 }
                 set {
@@ -1259,11 +1708,11 @@ namespace JMongolModel.Entity {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string SourceContent {
                 get {
-                    try {
-                        return ((string)(this[this.tabletLog.SourceContentColumn]));
+                    if (this.IsSourceContentNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“tLog”中列“SourceContent”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tabletLog.SourceContentColumn]));
                     }
                 }
                 set {
@@ -1275,11 +1724,11 @@ namespace JMongolModel.Entity {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string UpdateContent {
                 get {
-                    try {
-                        return ((string)(this[this.tabletLog.UpdateContentColumn]));
+                    if (this.IsUpdateContentNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“tLog”中列“UpdateContent”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tabletLog.UpdateContentColumn]));
                     }
                 }
                 set {
@@ -1291,11 +1740,11 @@ namespace JMongolModel.Entity {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string ModuleName {
                 get {
-                    try {
-                        return ((string)(this[this.tabletLog.ModuleNameColumn]));
+                    if (this.IsModuleNameNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“tLog”中列“ModuleName”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tabletLog.ModuleNameColumn]));
                     }
                 }
                 set {
@@ -1307,11 +1756,11 @@ namespace JMongolModel.Entity {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Remark {
                 get {
-                    try {
-                        return ((string)(this[this.tabletLog.RemarkColumn]));
+                    if (this.IsRemarkNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“tLog”中列“Remark”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tabletLog.RemarkColumn]));
                     }
                 }
                 set {
@@ -1455,11 +1904,11 @@ namespace JMongolModel.Entity {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string LogType {
                 get {
-                    try {
-                        return ((string)(this[this.tabletLogList.LogTypeColumn]));
+                    if (this.IsLogTypeNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“tLogList”中列“LogType”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tabletLogList.LogTypeColumn]));
                     }
                 }
                 set {
@@ -1471,11 +1920,11 @@ namespace JMongolModel.Entity {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string LogIP {
                 get {
-                    try {
-                        return ((string)(this[this.tabletLogList.LogIPColumn]));
+                    if (this.IsLogIPNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“tLogList”中列“LogIP”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tabletLogList.LogIPColumn]));
                     }
                 }
                 set {
@@ -1487,11 +1936,11 @@ namespace JMongolModel.Entity {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string ModuleName {
                 get {
-                    try {
-                        return ((string)(this[this.tabletLogList.ModuleNameColumn]));
+                    if (this.IsModuleNameNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“tLogList”中列“ModuleName”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tabletLogList.ModuleNameColumn]));
                     }
                 }
                 set {
@@ -1503,11 +1952,11 @@ namespace JMongolModel.Entity {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Remark {
                 get {
-                    try {
-                        return ((string)(this[this.tabletLogList.RemarkColumn]));
+                    if (this.IsRemarkNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“tLogList”中列“Remark”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tabletLogList.RemarkColumn]));
                     }
                 }
                 set {
@@ -1565,6 +2014,210 @@ namespace JMongolModel.Entity {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class tExceptionRow : global::System.Data.DataRow {
+            
+            private tExceptionDataTable tabletException;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tExceptionRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletException = ((tExceptionDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int SortID {
+                get {
+                    return ((int)(this[this.tabletException.SortIDColumn]));
+                }
+                set {
+                    this[this.tabletException.SortIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int OID {
+                get {
+                    return ((int)(this[this.tabletException.OIDColumn]));
+                }
+                set {
+                    this[this.tabletException.OIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int CreateID {
+                get {
+                    return ((int)(this[this.tabletException.CreateIDColumn]));
+                }
+                set {
+                    this[this.tabletException.CreateIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime CreateDate {
+                get {
+                    return ((global::System.DateTime)(this[this.tabletException.CreateDateColumn]));
+                }
+                set {
+                    this[this.tabletException.CreateDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int UpdateID {
+                get {
+                    return ((int)(this[this.tabletException.UpdateIDColumn]));
+                }
+                set {
+                    this[this.tabletException.UpdateIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime UpdateDate {
+                get {
+                    return ((global::System.DateTime)(this[this.tabletException.UpdateDateColumn]));
+                }
+                set {
+                    this[this.tabletException.UpdateDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte[] VersionFlag {
+                get {
+                    try {
+                        return ((byte[])(this[this.tabletException.VersionFlagColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“tException”中列“VersionFlag”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tabletException.VersionFlagColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool DeleteFlag {
+                get {
+                    return ((bool)(this[this.tabletException.DeleteFlagColumn]));
+                }
+                set {
+                    this[this.tabletException.DeleteFlagColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ExceptionTitle {
+                get {
+                    try {
+                        return ((string)(this[this.tabletException.ExceptionTitleColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“tException”中列“ExceptionTitle”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tabletException.ExceptionTitleColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ExceptionSource {
+                get {
+                    try {
+                        return ((string)(this[this.tabletException.ExceptionSourceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“tException”中列“ExceptionSource”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tabletException.ExceptionSourceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ExceptionContent {
+                get {
+                    try {
+                        return ((string)(this[this.tabletException.ExceptionContentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“tException”中列“ExceptionContent”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tabletException.ExceptionContentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsVersionFlagNull() {
+                return this.IsNull(this.tabletException.VersionFlagColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetVersionFlagNull() {
+                this[this.tabletException.VersionFlagColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsExceptionTitleNull() {
+                return this.IsNull(this.tabletException.ExceptionTitleColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetExceptionTitleNull() {
+                this[this.tabletException.ExceptionTitleColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsExceptionSourceNull() {
+                return this.IsNull(this.tabletException.ExceptionSourceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetExceptionSourceNull() {
+                this[this.tabletException.ExceptionSourceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsExceptionContentNull() {
+                return this.IsNull(this.tabletException.ExceptionContentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetExceptionContentNull() {
+                this[this.tabletException.ExceptionContentColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1618,6 +2271,40 @@ namespace JMongolModel.Entity {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public tLogListRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class tExceptionRowChangeEvent : global::System.EventArgs {
+            
+            private tExceptionRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tExceptionRowChangeEvent(tExceptionRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tExceptionRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2508,6 +3195,388 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class tExceptionTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public tExceptionTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "tException";
+            tableMapping.ColumnMappings.Add("SortID", "SortID");
+            tableMapping.ColumnMappings.Add("OID", "OID");
+            tableMapping.ColumnMappings.Add("CreateID", "CreateID");
+            tableMapping.ColumnMappings.Add("CreateDate", "CreateDate");
+            tableMapping.ColumnMappings.Add("UpdateID", "UpdateID");
+            tableMapping.ColumnMappings.Add("UpdateDate", "UpdateDate");
+            tableMapping.ColumnMappings.Add("VersionFlag", "VersionFlag");
+            tableMapping.ColumnMappings.Add("DeleteFlag", "DeleteFlag");
+            tableMapping.ColumnMappings.Add("ExceptionTitle", "ExceptionTitle");
+            tableMapping.ColumnMappings.Add("ExceptionSource", "ExceptionSource");
+            tableMapping.ColumnMappings.Add("ExceptionContent", "ExceptionContent");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [tException] WHERE (([OID] = @Original_OID) AND ([VersionFlag] = @Ori" +
+                "ginal_VersionFlag))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VersionFlag", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VersionFlag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [tException] ([SortID], [OID], [CreateID], [CreateDate], [UpdateID], [UpdateDate], [DeleteFlag], [ExceptionTitle], [ExceptionSource], [ExceptionContent]) VALUES (@SortID, @OID, @CreateID, @CreateDate, @UpdateID, @UpdateDate, @DeleteFlag, @ExceptionTitle, @ExceptionSource, @ExceptionContent);
+SELECT SortID, OID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, ExceptionTitle, ExceptionSource, ExceptionContent FROM tException WHERE (OID = @OID)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SortID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SortID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DeleteFlag", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DeleteFlag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExceptionTitle", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExceptionTitle", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExceptionSource", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExceptionSource", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExceptionContent", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExceptionContent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [tException] SET [SortID] = @SortID, [OID] = @OID, [CreateID] = @CreateID, [CreateDate] = @CreateDate, [UpdateID] = @UpdateID, [UpdateDate] = @UpdateDate, [DeleteFlag] = @DeleteFlag, [ExceptionTitle] = @ExceptionTitle, [ExceptionSource] = @ExceptionSource, [ExceptionContent] = @ExceptionContent WHERE (([OID] = @Original_OID) AND ([VersionFlag] = @Original_VersionFlag));
+SELECT SortID, OID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, ExceptionTitle, ExceptionSource, ExceptionContent FROM tException WHERE (OID = @OID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SortID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SortID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DeleteFlag", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DeleteFlag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExceptionTitle", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExceptionTitle", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExceptionSource", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExceptionSource", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExceptionContent", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExceptionContent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VersionFlag", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VersionFlag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::JMongolModel.Properties.Settings.Default.JMongolConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT   SortID, OID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, De" +
+                "leteFlag, ExceptionTitle, ExceptionSource, \r\n                ExceptionContent\r\nF" +
+                "ROM      tException";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ConfigDataSet.tExceptionDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ConfigDataSet.tExceptionDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ConfigDataSet.tExceptionDataTable dataTable = new ConfigDataSet.tExceptionDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ConfigDataSet.tExceptionDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ConfigDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "tException");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_OID, byte[] Original_VersionFlag) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_OID));
+            if ((Original_VersionFlag == null)) {
+                throw new global::System.ArgumentNullException("Original_VersionFlag");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((byte[])(Original_VersionFlag));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int SortID, int OID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string ExceptionTitle, string ExceptionSource, string ExceptionContent) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SortID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(OID));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(CreateID));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(CreateDate));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(UpdateID));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(UpdateDate));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(DeleteFlag));
+            if ((ExceptionTitle == null)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(ExceptionTitle));
+            }
+            if ((ExceptionSource == null)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(ExceptionSource));
+            }
+            if ((ExceptionContent == null)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(ExceptionContent));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int SortID, int OID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string ExceptionTitle, string ExceptionSource, string ExceptionContent, int Original_OID, byte[] Original_VersionFlag) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(SortID));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(OID));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(CreateID));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(CreateDate));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(UpdateID));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(UpdateDate));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(DeleteFlag));
+            if ((ExceptionTitle == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(ExceptionTitle));
+            }
+            if ((ExceptionSource == null)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(ExceptionSource));
+            }
+            if ((ExceptionContent == null)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(ExceptionContent));
+            }
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_OID));
+            if ((Original_VersionFlag == null)) {
+                throw new global::System.ArgumentNullException("Original_VersionFlag");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((byte[])(Original_VersionFlag));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int SortID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string ExceptionTitle, string ExceptionSource, string ExceptionContent, int Original_OID, byte[] Original_VersionFlag) {
+            return this.Update(SortID, Original_OID, CreateID, CreateDate, UpdateID, UpdateDate, DeleteFlag, ExceptionTitle, ExceptionSource, ExceptionContent, Original_OID, Original_VersionFlag);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2522,6 +3591,8 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
         private tLogTableAdapter _tLogTableAdapter;
         
         private tLogListTableAdapter _tLogListTableAdapter;
+        
+        private tExceptionTableAdapter _tExceptionTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -2568,6 +3639,20 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public tExceptionTableAdapter tExceptionTableAdapter {
+            get {
+                return this._tExceptionTableAdapter;
+            }
+            set {
+                this._tExceptionTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -2593,6 +3678,10 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
                             && (this._tLogListTableAdapter.Connection != null))) {
                     return this._tLogListTableAdapter.Connection;
                 }
+                if (((this._tExceptionTableAdapter != null) 
+                            && (this._tExceptionTableAdapter.Connection != null))) {
+                    return this._tExceptionTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -2610,6 +3699,9 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
                     count = (count + 1);
                 }
                 if ((this._tLogListTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._tExceptionTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -2641,6 +3733,15 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._tExceptionTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tException.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tExceptionTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -2667,6 +3768,14 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._tExceptionTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tException.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tExceptionTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -2677,6 +3786,14 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(ConfigDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._tExceptionTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tException.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tExceptionTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._tLogListTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.tLogList.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -2740,6 +3857,10 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
                         && (this.MatchTableAdapterConnection(this._tLogListTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
             }
+            if (((this._tExceptionTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._tExceptionTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager 不包含任何连接信息。请将每个 TableAdapterManager TableAdapter 属性设置为有效的 Tabl" +
@@ -2787,6 +3908,15 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
                     if (this._tLogListTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._tLogListTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tLogListTableAdapter.Adapter);
+                    }
+                }
+                if ((this._tExceptionTableAdapter != null)) {
+                    revertConnections.Add(this._tExceptionTableAdapter, this._tExceptionTableAdapter.Connection);
+                    this._tExceptionTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._tExceptionTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._tExceptionTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._tExceptionTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._tExceptionTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -2854,6 +3984,10 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
                 if ((this._tLogListTableAdapter != null)) {
                     this._tLogListTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tLogListTableAdapter]));
                     this._tLogListTableAdapter.Transaction = null;
+                }
+                if ((this._tExceptionTableAdapter != null)) {
+                    this._tExceptionTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tExceptionTableAdapter]));
+                    this._tExceptionTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

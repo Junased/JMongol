@@ -17,12 +17,23 @@ namespace JMongolDal
 
         #region 数据update
 
+        /// <summary>
+        /// 记录日志，添加数据
+        /// </summary>
+        /// <param name="row">数据行</param>
+        /// <param name="userID">当前登录用的ID</param>
+        /// <param name="strUserIP">当前登录用户的IP</param>
+        /// <param name="moduleName">模块名称</param>
+        /// <returns>返回是否成功更新数据</returns>
         public virtual bool Update(DataRow row,int userID,string strUserIP,string moduleName)
         {
             bool b = false;
-            if (row.RowState == DataRowState.Unchanged) return b;
-            this.SetRowUpdateValue(row, userID);
             DataRowState state = row.RowState;
+            if (state == DataRowState.Unchanged)
+            { 
+                return b;
+            }
+            this.SetRowUpdateValue(row, userID);
             if (state == DataRowState.Added)
             {
                 //添加数据
@@ -48,9 +59,22 @@ namespace JMongolDal
             return b;
         }
 
+        /// <summary>
+        /// 设置数据行中默认字段：
+        /// SortID
+        /// CreateID
+        /// CreateDate
+        /// UpdateID
+        /// UpdateDate
+        /// DeleteFlag
+        /// </summary>
+        /// <param name="row">数据行</param>
+        /// <param name="userID">用户ID</param>
+        /// <returns>返回更改过的数据行</returns>
         protected virtual DataRow SetRowUpdateValue(DataRow row,int userID)
         {
-            if (row.RowState == DataRowState.Detached || row.RowState == DataRowState.Added)
+            DataRowState state = row.RowState;
+            if (state == DataRowState.Detached || state == DataRowState.Added)
             {
                 if (row.Table.Columns.IndexOf(Const.SortID) >= 0)
                 {
@@ -68,11 +92,15 @@ namespace JMongolDal
                     row[Const.DeleteFlag] = false;
             }
             if (row.Table.Columns.IndexOf(Const.UpdateID) >= 0)
-                row[Const.UpdateID] = userID;
+            {
+                row[Const.UpdateID] = userID; 
+            }
             if (row.Table.Columns.IndexOf(Const.UpdateDate) >= 0)
+            { 
                 row[Const.UpdateDate] = DateTime.Now;
+            }
 
-            if (row.RowState == DataRowState.Detached)
+            if (state == DataRowState.Detached)
             {
                 DataTable table = row.Table;
                 table.Rows.Add(row);

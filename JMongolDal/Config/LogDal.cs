@@ -71,14 +71,86 @@ namespace JMongolDal.Config
             return strTmp;
         }
 
+        /// <summary>
+        /// 记录日志，用于用户登录或者注销
+        /// </summary>
+        /// <param name="logType">日志类型</param>
+        /// <param name="userID">当前登录用的ID</param>
+        /// <param name="strUserIP">当前登录用的IP</param>
         public void WriteLog(Common.LogType logType,int userID,string strUserIP)
         {
             ConfigDataSet.tLogRow row = this.InitRow(logType, strUserIP);
             row.SourceContent = row.LogType;
             row.UpdateContent = row.LogType;
             row.ModuleName = row.LogType;
-            
+            base.Update(row, userID, strUserIP, row.ModuleName);
         }
+
+        /// <summary>
+        /// 记录日志，用于查看数据记录
+        /// </summary>
+        /// <param name="userID">当前登录用户的ID</param>
+        /// <param name="strUserIP">当前登录用户的IP</param>
+        /// <param name="moduleName">模块名称</param>
+        /// <param name="tableName">表名</param>
+        /// <param name="oid">行记录oid</param>
+        public void WriteLog(int userID,string strUserIP,string moduleName,string tableName,int oid)
+        {
+            ConfigDataSet.tLogRow row = this.InitRow(Common.LogType.View, strUserIP);
+            row.SourceContent = tableName;
+            row.UpdateContent = oid.ToString();
+            row.ModuleName = moduleName;
+            base.Update(row, userID, strUserIP, moduleName);
+        }
+
+
+        public new void WriteLog<T>(T t, Common.LogType logType, int userID, string userIP, string moduleName)
+            where T : DataRow
+        {
+            if (t is ConfigDataSet.tLogRow || t is ConfigDataSet.tExceptionRow) return;
+
+            if (logType == Common.LogType.LogIn || logType == Common.LogType.LogOut)
+                this.WriteLog(logType, userID, userIP);
+
+            string oid = string.Empty;
+            if (t.Table.Columns.IndexOf(Const.ID) >= 0)
+            {
+                oid = (t[Const.ID] ?? Const.Zero).ToString();
+            }
+            else
+            {
+                oid = Const.Zero;
+            }
+
+            if (logType == Common.LogType.View)
+                this.WriteLog(userID, userIP, moduleName, t.Table.TableName, int.Parse(oid));
+
+            ConfigDataSet.tLogRow row = this.InitRow(logType, userIP);
+
+            string sourceContent = Const.TableName + Const.EqualMark + t.Table.TableName + Const.Separator + Const.BreakLine;
+            string updateContent = Const.TableName + Const.EqualMark + t.Table.TableName + Const.Separator + Const.BreakLine;
+            if (logType == Common.LogType.Update || logType == Common.LogType.LogicDelete)
+            {
+                if (t.Table.Columns.IndexOf(Const.DeleteFlag) >= 0 && ((bool)t[Const.DeleteFlag]) == true)
+                {
+                    row.LogType = Common.LogType.LogicDelete.ToString();
+                }
+                sourceContent += this.OperateRow(t, DataRowVersion.Original);
+                updateContent += this.OperateRow(t, DataRowVersion.Current);
+            }
+            else if (logType == Common.LogType.Add || logType == Common.LogType.Delete)
+            {
+                sourceContent += this.OperateRow(t, DataRowVersion.Current);
+            }
+
+            row.SourceContent = sourceContent;
+            row.UpdateContent = updateContent;
+
+            row.ModuleName = moduleName;
+
+            this.Update(row, userID, userIP, moduleName);
+        }
+
 
     }
 }
