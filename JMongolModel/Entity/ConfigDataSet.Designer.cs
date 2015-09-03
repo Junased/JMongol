@@ -419,8 +419,6 @@ namespace JMongolModel.Entity {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tLogDataTable : global::System.Data.TypedTableBase<tLogRow> {
             
-            private global::System.Data.DataColumn columnOID;
-            
             private global::System.Data.DataColumn columnSortID;
             
             private global::System.Data.DataColumn columnCreateID;
@@ -446,6 +444,8 @@ namespace JMongolModel.Entity {
             private global::System.Data.DataColumn columnModuleName;
             
             private global::System.Data.DataColumn columnRemark;
+            
+            private global::System.Data.DataColumn columnID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -478,14 +478,6 @@ namespace JMongolModel.Entity {
             protected tLogDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OIDColumn {
-                get {
-                    return this.columnOID;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -594,6 +586,14 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -632,7 +632,6 @@ namespace JMongolModel.Entity {
             public tLogRow AddtLogRow(int SortID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, byte[] VersionFlag, bool DeleteFlag, string LogType, string LogIP, string SourceContent, string UpdateContent, string ModuleName, string Remark) {
                 tLogRow rowtLogRow = ((tLogRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
                         SortID,
                         CreateID,
                         CreateDate,
@@ -645,7 +644,8 @@ namespace JMongolModel.Entity {
                         SourceContent,
                         UpdateContent,
                         ModuleName,
-                        Remark};
+                        Remark,
+                        null};
                 rowtLogRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtLogRow);
                 return rowtLogRow;
@@ -653,9 +653,9 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tLogRow FindByOID(int OID) {
+            public tLogRow FindByID(int ID) {
                 return ((tLogRow)(this.Rows.Find(new object[] {
-                            OID})));
+                            ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -675,7 +675,6 @@ namespace JMongolModel.Entity {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnOID = base.Columns["OID"];
                 this.columnSortID = base.Columns["SortID"];
                 this.columnCreateID = base.Columns["CreateID"];
                 this.columnCreateDate = base.Columns["CreateDate"];
@@ -689,13 +688,12 @@ namespace JMongolModel.Entity {
                 this.columnUpdateContent = base.Columns["UpdateContent"];
                 this.columnModuleName = base.Columns["ModuleName"];
                 this.columnRemark = base.Columns["Remark"];
+                this.columnID = base.Columns["ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnOID = new global::System.Data.DataColumn("OID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOID);
                 this.columnSortID = new global::System.Data.DataColumn("SortID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSortID);
                 this.columnCreateID = new global::System.Data.DataColumn("CreateID", typeof(int), null, global::System.Data.MappingType.Element);
@@ -722,14 +720,10 @@ namespace JMongolModel.Entity {
                 base.Columns.Add(this.columnModuleName);
                 this.columnRemark = new global::System.Data.DataColumn("Remark", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRemark);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnOID}, true));
-                this.columnOID.AutoIncrement = true;
-                this.columnOID.AutoIncrementSeed = -1;
-                this.columnOID.AutoIncrementStep = -1;
-                this.columnOID.AllowDBNull = false;
-                this.columnOID.ReadOnly = true;
-                this.columnOID.Unique = true;
+                                this.columnID}, true));
                 this.columnSortID.AllowDBNull = false;
                 this.columnSortID.DefaultValue = ((int)(0));
                 this.columnCreateID.AllowDBNull = false;
@@ -748,6 +742,12 @@ namespace JMongolModel.Entity {
                 this.columnModuleName.MaxLength = 20;
                 this.columnRemark.DefaultValue = ((string)(""));
                 this.columnRemark.MaxLength = 200;
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
+                this.columnID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -881,8 +881,6 @@ namespace JMongolModel.Entity {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tLogListDataTable : global::System.Data.TypedTableBase<tLogListRow> {
             
-            private global::System.Data.DataColumn columnOID;
-            
             private global::System.Data.DataColumn columnCreateID;
             
             private global::System.Data.DataColumn columnCreateDate;
@@ -894,6 +892,8 @@ namespace JMongolModel.Entity {
             private global::System.Data.DataColumn columnModuleName;
             
             private global::System.Data.DataColumn columnRemark;
+            
+            private global::System.Data.DataColumn columnID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -926,14 +926,6 @@ namespace JMongolModel.Entity {
             protected tLogListDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OIDColumn {
-                get {
-                    return this.columnOID;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -986,6 +978,14 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1024,13 +1024,13 @@ namespace JMongolModel.Entity {
             public tLogListRow AddtLogListRow(int CreateID, System.DateTime CreateDate, string LogType, string LogIP, string ModuleName, string Remark) {
                 tLogListRow rowtLogListRow = ((tLogListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
                         CreateID,
                         CreateDate,
                         LogType,
                         LogIP,
                         ModuleName,
-                        Remark};
+                        Remark,
+                        null};
                 rowtLogListRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtLogListRow);
                 return rowtLogListRow;
@@ -1038,9 +1038,9 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tLogListRow FindByOID(int OID) {
+            public tLogListRow FindByID(int ID) {
                 return ((tLogListRow)(this.Rows.Find(new object[] {
-                            OID})));
+                            ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1060,20 +1060,18 @@ namespace JMongolModel.Entity {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnOID = base.Columns["OID"];
                 this.columnCreateID = base.Columns["CreateID"];
                 this.columnCreateDate = base.Columns["CreateDate"];
                 this.columnLogType = base.Columns["LogType"];
                 this.columnLogIP = base.Columns["LogIP"];
                 this.columnModuleName = base.Columns["ModuleName"];
                 this.columnRemark = base.Columns["Remark"];
+                this.columnID = base.Columns["ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnOID = new global::System.Data.DataColumn("OID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOID);
                 this.columnCreateID = new global::System.Data.DataColumn("CreateID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreateID);
                 this.columnCreateDate = new global::System.Data.DataColumn("CreateDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -1086,14 +1084,10 @@ namespace JMongolModel.Entity {
                 base.Columns.Add(this.columnModuleName);
                 this.columnRemark = new global::System.Data.DataColumn("Remark", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRemark);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnOID}, true));
-                this.columnOID.AutoIncrement = true;
-                this.columnOID.AutoIncrementSeed = -1;
-                this.columnOID.AutoIncrementStep = -1;
-                this.columnOID.AllowDBNull = false;
-                this.columnOID.ReadOnly = true;
-                this.columnOID.Unique = true;
+                                this.columnID}, true));
                 this.columnCreateID.AllowDBNull = false;
                 this.columnCreateID.DefaultValue = ((int)(0));
                 this.columnCreateDate.AllowDBNull = false;
@@ -1101,6 +1095,12 @@ namespace JMongolModel.Entity {
                 this.columnLogIP.MaxLength = 128;
                 this.columnModuleName.MaxLength = 20;
                 this.columnRemark.MaxLength = 200;
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
+                this.columnID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1236,8 +1236,6 @@ namespace JMongolModel.Entity {
             
             private global::System.Data.DataColumn columnSortID;
             
-            private global::System.Data.DataColumn columnOID;
-            
             private global::System.Data.DataColumn columnCreateID;
             
             private global::System.Data.DataColumn columnCreateDate;
@@ -1255,6 +1253,8 @@ namespace JMongolModel.Entity {
             private global::System.Data.DataColumn columnExceptionSource;
             
             private global::System.Data.DataColumn columnExceptionContent;
+            
+            private global::System.Data.DataColumn columnID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1294,14 +1294,6 @@ namespace JMongolModel.Entity {
             public global::System.Data.DataColumn SortIDColumn {
                 get {
                     return this.columnSortID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OIDColumn {
-                get {
-                    return this.columnOID;
                 }
             }
             
@@ -1379,6 +1371,14 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1414,11 +1414,10 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tExceptionRow AddtExceptionRow(int SortID, int OID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, byte[] VersionFlag, bool DeleteFlag, string ExceptionTitle, string ExceptionSource, string ExceptionContent) {
+            public tExceptionRow AddtExceptionRow(int SortID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, byte[] VersionFlag, bool DeleteFlag, string ExceptionTitle, string ExceptionSource, string ExceptionContent, int ID) {
                 tExceptionRow rowtExceptionRow = ((tExceptionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SortID,
-                        OID,
                         CreateID,
                         CreateDate,
                         UpdateID,
@@ -1427,7 +1426,8 @@ namespace JMongolModel.Entity {
                         DeleteFlag,
                         ExceptionTitle,
                         ExceptionSource,
-                        ExceptionContent};
+                        ExceptionContent,
+                        ID};
                 rowtExceptionRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtExceptionRow);
                 return rowtExceptionRow;
@@ -1435,9 +1435,9 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tExceptionRow FindByOID(int OID) {
+            public tExceptionRow FindByID(int ID) {
                 return ((tExceptionRow)(this.Rows.Find(new object[] {
-                            OID})));
+                            ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1458,7 +1458,6 @@ namespace JMongolModel.Entity {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnSortID = base.Columns["SortID"];
-                this.columnOID = base.Columns["OID"];
                 this.columnCreateID = base.Columns["CreateID"];
                 this.columnCreateDate = base.Columns["CreateDate"];
                 this.columnUpdateID = base.Columns["UpdateID"];
@@ -1468,6 +1467,7 @@ namespace JMongolModel.Entity {
                 this.columnExceptionTitle = base.Columns["ExceptionTitle"];
                 this.columnExceptionSource = base.Columns["ExceptionSource"];
                 this.columnExceptionContent = base.Columns["ExceptionContent"];
+                this.columnID = base.Columns["ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1475,8 +1475,6 @@ namespace JMongolModel.Entity {
             private void InitClass() {
                 this.columnSortID = new global::System.Data.DataColumn("SortID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSortID);
-                this.columnOID = new global::System.Data.DataColumn("OID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOID);
                 this.columnCreateID = new global::System.Data.DataColumn("CreateID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreateID);
                 this.columnCreateDate = new global::System.Data.DataColumn("CreateDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -1495,11 +1493,11 @@ namespace JMongolModel.Entity {
                 base.Columns.Add(this.columnExceptionSource);
                 this.columnExceptionContent = new global::System.Data.DataColumn("ExceptionContent", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnExceptionContent);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnOID}, true));
+                                this.columnID}, true));
                 this.columnSortID.AllowDBNull = false;
-                this.columnOID.AllowDBNull = false;
-                this.columnOID.Unique = true;
                 this.columnCreateID.AllowDBNull = false;
                 this.columnCreateDate.AllowDBNull = false;
                 this.columnUpdateID.AllowDBNull = false;
@@ -1509,6 +1507,8 @@ namespace JMongolModel.Entity {
                 this.columnExceptionTitle.MaxLength = 100;
                 this.columnExceptionSource.MaxLength = 1000;
                 this.columnExceptionContent.MaxLength = 2147483647;
+                this.columnID.AllowDBNull = false;
+                this.columnID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1642,8 +1642,6 @@ namespace JMongolModel.Entity {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tMessageDataTable : global::System.Data.TypedTableBase<tMessageRow> {
             
-            private global::System.Data.DataColumn columnOID;
-            
             private global::System.Data.DataColumn columnSortID;
             
             private global::System.Data.DataColumn columnCreateDate;
@@ -1669,6 +1667,8 @@ namespace JMongolModel.Entity {
             private global::System.Data.DataColumn columnMessageFlag;
             
             private global::System.Data.DataColumn columnRemark;
+            
+            private global::System.Data.DataColumn columnID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1701,14 +1701,6 @@ namespace JMongolModel.Entity {
             protected tMessageDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OIDColumn {
-                get {
-                    return this.columnOID;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1817,6 +1809,14 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1855,7 +1855,6 @@ namespace JMongolModel.Entity {
             public tMessageRow AddtMessageRow(int SortID, System.DateTime CreateDate, int CreateID, int UpdateID, System.DateTime UpdateDate, byte[] VersionFlag, bool DeleteFlag, string LanguageType, string MessageType, string MessageCode, string MessageContent, string MessageFlag, string Remark) {
                 tMessageRow rowtMessageRow = ((tMessageRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
                         SortID,
                         CreateDate,
                         CreateID,
@@ -1868,7 +1867,8 @@ namespace JMongolModel.Entity {
                         MessageCode,
                         MessageContent,
                         MessageFlag,
-                        Remark};
+                        Remark,
+                        null};
                 rowtMessageRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtMessageRow);
                 return rowtMessageRow;
@@ -1876,9 +1876,9 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tMessageRow FindByOID(int OID) {
+            public tMessageRow FindByID(int ID) {
                 return ((tMessageRow)(this.Rows.Find(new object[] {
-                            OID})));
+                            ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1898,7 +1898,6 @@ namespace JMongolModel.Entity {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnOID = base.Columns["OID"];
                 this.columnSortID = base.Columns["SortID"];
                 this.columnCreateDate = base.Columns["CreateDate"];
                 this.columnCreateID = base.Columns["CreateID"];
@@ -1912,13 +1911,12 @@ namespace JMongolModel.Entity {
                 this.columnMessageContent = base.Columns["MessageContent"];
                 this.columnMessageFlag = base.Columns["MessageFlag"];
                 this.columnRemark = base.Columns["Remark"];
+                this.columnID = base.Columns["ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnOID = new global::System.Data.DataColumn("OID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOID);
                 this.columnSortID = new global::System.Data.DataColumn("SortID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSortID);
                 this.columnCreateDate = new global::System.Data.DataColumn("CreateDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -1945,14 +1943,10 @@ namespace JMongolModel.Entity {
                 base.Columns.Add(this.columnMessageFlag);
                 this.columnRemark = new global::System.Data.DataColumn("Remark", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRemark);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnOID}, true));
-                this.columnOID.AutoIncrement = true;
-                this.columnOID.AutoIncrementSeed = -1;
-                this.columnOID.AutoIncrementStep = -1;
-                this.columnOID.AllowDBNull = false;
-                this.columnOID.ReadOnly = true;
-                this.columnOID.Unique = true;
+                                this.columnID}, true));
                 this.columnSortID.AllowDBNull = false;
                 this.columnCreateDate.AllowDBNull = false;
                 this.columnCreateID.AllowDBNull = false;
@@ -1966,6 +1960,12 @@ namespace JMongolModel.Entity {
                 this.columnMessageContent.MaxLength = 2000;
                 this.columnMessageFlag.MaxLength = 50;
                 this.columnRemark.MaxLength = 50;
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
+                this.columnID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2099,8 +2099,6 @@ namespace JMongolModel.Entity {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tExceptionListDataTable : global::System.Data.TypedTableBase<tExceptionListRow> {
             
-            private global::System.Data.DataColumn columnOID;
-            
             private global::System.Data.DataColumn columnSortID;
             
             private global::System.Data.DataColumn columnCreateID;
@@ -2118,6 +2116,8 @@ namespace JMongolModel.Entity {
             private global::System.Data.DataColumn columnExceptionTitle;
             
             private global::System.Data.DataColumn columnExceptionSource;
+            
+            private global::System.Data.DataColumn columnID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -2150,14 +2150,6 @@ namespace JMongolModel.Entity {
             protected tExceptionListDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OIDColumn {
-                get {
-                    return this.columnOID;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2234,6 +2226,14 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2269,10 +2269,9 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tExceptionListRow AddtExceptionListRow(int OID, int SortID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, byte[] VersionFlag, bool DeleteFlag, string ExceptionTitle, string ExceptionSource) {
+            public tExceptionListRow AddtExceptionListRow(int SortID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, byte[] VersionFlag, bool DeleteFlag, string ExceptionTitle, string ExceptionSource, int ID) {
                 tExceptionListRow rowtExceptionListRow = ((tExceptionListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        OID,
                         SortID,
                         CreateID,
                         CreateDate,
@@ -2281,7 +2280,8 @@ namespace JMongolModel.Entity {
                         VersionFlag,
                         DeleteFlag,
                         ExceptionTitle,
-                        ExceptionSource};
+                        ExceptionSource,
+                        ID};
                 rowtExceptionListRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtExceptionListRow);
                 return rowtExceptionListRow;
@@ -2289,9 +2289,9 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tExceptionListRow FindByOID(int OID) {
+            public tExceptionListRow FindByID(int ID) {
                 return ((tExceptionListRow)(this.Rows.Find(new object[] {
-                            OID})));
+                            ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2311,7 +2311,6 @@ namespace JMongolModel.Entity {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnOID = base.Columns["OID"];
                 this.columnSortID = base.Columns["SortID"];
                 this.columnCreateID = base.Columns["CreateID"];
                 this.columnCreateDate = base.Columns["CreateDate"];
@@ -2321,13 +2320,12 @@ namespace JMongolModel.Entity {
                 this.columnDeleteFlag = base.Columns["DeleteFlag"];
                 this.columnExceptionTitle = base.Columns["ExceptionTitle"];
                 this.columnExceptionSource = base.Columns["ExceptionSource"];
+                this.columnID = base.Columns["ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnOID = new global::System.Data.DataColumn("OID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOID);
                 this.columnSortID = new global::System.Data.DataColumn("SortID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSortID);
                 this.columnCreateID = new global::System.Data.DataColumn("CreateID", typeof(int), null, global::System.Data.MappingType.Element);
@@ -2346,10 +2344,10 @@ namespace JMongolModel.Entity {
                 base.Columns.Add(this.columnExceptionTitle);
                 this.columnExceptionSource = new global::System.Data.DataColumn("ExceptionSource", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnExceptionSource);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnOID}, true));
-                this.columnOID.AllowDBNull = false;
-                this.columnOID.Unique = true;
+                                this.columnID}, true));
                 this.columnSortID.AllowDBNull = false;
                 this.columnCreateID.AllowDBNull = false;
                 this.columnCreateDate.AllowDBNull = false;
@@ -2359,6 +2357,8 @@ namespace JMongolModel.Entity {
                 this.columnDeleteFlag.AllowDBNull = false;
                 this.columnExceptionTitle.MaxLength = 50;
                 this.columnExceptionSource.MaxLength = 500;
+                this.columnID.AllowDBNull = false;
+                this.columnID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2497,17 +2497,6 @@ namespace JMongolModel.Entity {
             internal tLogRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tabletLog = ((tLogDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int OID {
-                get {
-                    return ((int)(this[this.tabletLog.OIDColumn]));
-                }
-                set {
-                    this[this.tabletLog.OIDColumn] = value;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2690,6 +2679,17 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ID {
+                get {
+                    return ((int)(this[this.tabletLog.IDColumn]));
+                }
+                set {
+                    this[this.tabletLog.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsVersionFlagNull() {
                 return this.IsNull(this.tabletLog.VersionFlagColumn);
             }
@@ -2789,17 +2789,6 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int OID {
-                get {
-                    return ((int)(this[this.tabletLogList.OIDColumn]));
-                }
-                set {
-                    this[this.tabletLogList.OIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int CreateID {
                 get {
                     return ((int)(this[this.tabletLogList.CreateIDColumn]));
@@ -2886,6 +2875,17 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ID {
+                get {
+                    return ((int)(this[this.tabletLogList.IDColumn]));
+                }
+                set {
+                    this[this.tabletLogList.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsLogTypeNull() {
                 return this.IsNull(this.tabletLogList.LogTypeColumn);
             }
@@ -2955,17 +2955,6 @@ namespace JMongolModel.Entity {
                 }
                 set {
                     this[this.tabletException.SortIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int OID {
-                get {
-                    return ((int)(this[this.tabletException.OIDColumn]));
-                }
-                set {
-                    this[this.tabletException.OIDColumn] = value;
                 }
             }
             
@@ -3090,6 +3079,17 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ID {
+                get {
+                    return ((int)(this[this.tabletException.IDColumn]));
+                }
+                set {
+                    this[this.tabletException.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsVersionFlagNull() {
                 return this.IsNull(this.tabletException.VersionFlagColumn);
             }
@@ -3149,17 +3149,6 @@ namespace JMongolModel.Entity {
             internal tMessageRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tabletMessage = ((tMessageDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int OID {
-                get {
-                    return ((int)(this[this.tabletMessage.OIDColumn]));
-                }
-                set {
-                    this[this.tabletMessage.OIDColumn] = value;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3342,6 +3331,17 @@ namespace JMongolModel.Entity {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ID {
+                get {
+                    return ((int)(this[this.tabletMessage.IDColumn]));
+                }
+                set {
+                    this[this.tabletMessage.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsVersionFlagNull() {
                 return this.IsNull(this.tabletMessage.VersionFlagColumn);
             }
@@ -3437,17 +3437,6 @@ namespace JMongolModel.Entity {
             internal tExceptionListRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tabletExceptionList = ((tExceptionListDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int OID {
-                get {
-                    return ((int)(this[this.tabletExceptionList.OIDColumn]));
-                }
-                set {
-                    this[this.tabletExceptionList.OIDColumn] = value;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3561,6 +3550,17 @@ namespace JMongolModel.Entity {
                 }
                 set {
                     this[this.tabletExceptionList.ExceptionSourceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ID {
+                get {
+                    return ((int)(this[this.tabletExceptionList.IDColumn]));
+                }
+                set {
+                    this[this.tabletExceptionList.IDColumn] = value;
                 }
             }
             
@@ -3896,7 +3896,6 @@ namespace JMongolModel.Entity.ConfigDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "tLog";
-            tableMapping.ColumnMappings.Add("OID", "OID");
             tableMapping.ColumnMappings.Add("SortID", "SortID");
             tableMapping.ColumnMappings.Add("CreateID", "CreateID");
             tableMapping.ColumnMappings.Add("CreateDate", "CreateDate");
@@ -3910,18 +3909,19 @@ namespace JMongolModel.Entity.ConfigDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("UpdateContent", "UpdateContent");
             tableMapping.ColumnMappings.Add("ModuleName", "ModuleName");
             tableMapping.ColumnMappings.Add("Remark", "Remark");
+            tableMapping.ColumnMappings.Add("ID", "ID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[tLog] WHERE (([OID] = @Original_OID) AND ([VersionFlag] = @Ori" +
-                "ginal_VersionFlag))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [tLog] WHERE (([ID] = @Original_ID) AND ([VersionFlag] = @Original_Ve" +
+                "rsionFlag))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VersionFlag", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VersionFlag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[tLog] ([SortID], [CreateID], [CreateDate], [UpdateID], [UpdateDate], [DeleteFlag], [LogType], [LogIP], [SourceContent], [UpdateContent], [ModuleName], [Remark]) VALUES (@SortID, @CreateID, @CreateDate, @UpdateID, @UpdateDate, @DeleteFlag, @LogType, @LogIP, @SourceContent, @UpdateContent, @ModuleName, @Remark);
-SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, LogType, LogIP, SourceContent, UpdateContent, ModuleName, Remark FROM tLog WHERE (OID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [tLog] ([SortID], [CreateID], [CreateDate], [UpdateID], [UpdateDate], [DeleteFlag], [LogType], [LogIP], [SourceContent], [UpdateContent], [ModuleName], [Remark]) VALUES (@SortID, @CreateID, @CreateDate, @UpdateID, @UpdateDate, @DeleteFlag, @LogType, @LogIP, @SourceContent, @UpdateContent, @ModuleName, @Remark);
+SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, LogType, LogIP, SourceContent, UpdateContent, ModuleName, Remark FROM tLog WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SortID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SortID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3937,8 +3937,8 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Remark", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remark", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[tLog] SET [SortID] = @SortID, [CreateID] = @CreateID, [CreateDate] = @CreateDate, [UpdateID] = @UpdateID, [UpdateDate] = @UpdateDate, [DeleteFlag] = @DeleteFlag, [LogType] = @LogType, [LogIP] = @LogIP, [SourceContent] = @SourceContent, [UpdateContent] = @UpdateContent, [ModuleName] = @ModuleName, [Remark] = @Remark WHERE (([OID] = @Original_OID) AND ([VersionFlag] = @Original_VersionFlag));
-SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, LogType, LogIP, SourceContent, UpdateContent, ModuleName, Remark FROM tLog WHERE (OID = @OID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [tLog] SET [SortID] = @SortID, [CreateID] = @CreateID, [CreateDate] = @CreateDate, [UpdateID] = @UpdateID, [UpdateDate] = @UpdateDate, [DeleteFlag] = @DeleteFlag, [LogType] = @LogType, [LogIP] = @LogIP, [SourceContent] = @SourceContent, [UpdateContent] = @UpdateContent, [ModuleName] = @ModuleName, [Remark] = @Remark WHERE (([ID] = @Original_ID) AND ([VersionFlag] = @Original_VersionFlag));
+SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, LogType, LogIP, SourceContent, UpdateContent, ModuleName, Remark FROM tLog WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SortID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SortID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3952,9 +3952,9 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateContent", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateContent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ModuleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ModuleName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Remark", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remark", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VersionFlag", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VersionFlag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3970,9 +3970,9 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Dele" +
-                "teFlag, LogType, LogIP, SourceContent, UpdateContent, ModuleName, Remark FROM db" +
-                "o.tLog";
+            this._commandCollection[0].CommandText = "SELECT   ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del" +
+                "eteFlag, LogType, LogIP, SourceContent, \r\n                UpdateContent, ModuleN" +
+                "ame, Remark\r\nFROM      tLog";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4033,8 +4033,8 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_OID, byte[] Original_VersionFlag) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_OID));
+        public virtual int Delete(int Original_ID, byte[] Original_VersionFlag) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_VersionFlag == null)) {
                 throw new global::System.ArgumentNullException("Original_VersionFlag");
             }
@@ -4124,7 +4124,7 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int SortID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string LogType, string LogIP, string SourceContent, string UpdateContent, string ModuleName, string Remark, int Original_OID, byte[] Original_VersionFlag, int OID) {
+        public virtual int Update(int SortID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string LogType, string LogIP, string SourceContent, string UpdateContent, string ModuleName, string Remark, int Original_ID, byte[] Original_VersionFlag, int ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(SortID));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(CreateID));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(CreateDate));
@@ -4167,14 +4167,14 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             else {
                 this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Remark));
             }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_OID));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_ID));
             if ((Original_VersionFlag == null)) {
                 throw new global::System.ArgumentNullException("Original_VersionFlag");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[13].Value = ((byte[])(Original_VersionFlag));
             }
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(OID));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4195,8 +4195,8 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int SortID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string LogType, string LogIP, string SourceContent, string UpdateContent, string ModuleName, string Remark, int Original_OID, byte[] Original_VersionFlag) {
-            return this.Update(SortID, CreateID, CreateDate, UpdateID, UpdateDate, DeleteFlag, LogType, LogIP, SourceContent, UpdateContent, ModuleName, Remark, Original_OID, Original_VersionFlag, Original_OID);
+        public virtual int Update(int SortID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string LogType, string LogIP, string SourceContent, string UpdateContent, string ModuleName, string Remark, int Original_ID, byte[] Original_VersionFlag) {
+            return this.Update(SortID, CreateID, CreateDate, UpdateID, UpdateDate, DeleteFlag, LogType, LogIP, SourceContent, UpdateContent, ModuleName, Remark, Original_ID, Original_VersionFlag, Original_ID);
         }
     }
     
@@ -4321,19 +4321,19 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "tLogList";
-            tableMapping.ColumnMappings.Add("OID", "OID");
             tableMapping.ColumnMappings.Add("CreateID", "CreateID");
             tableMapping.ColumnMappings.Add("CreateDate", "CreateDate");
             tableMapping.ColumnMappings.Add("LogType", "LogType");
             tableMapping.ColumnMappings.Add("LogIP", "LogIP");
             tableMapping.ColumnMappings.Add("ModuleName", "ModuleName");
             tableMapping.ColumnMappings.Add("Remark", "Remark");
+            tableMapping.ColumnMappings.Add("ID", "ID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[tLogList] WHERE (([OID] = @Original_OID) AND ([CreateID] = @Original_CreateID) AND ([CreateDate] = @Original_CreateDate) AND ((@IsNull_LogType = 1 AND [LogType] IS NULL) OR ([LogType] = @Original_LogType)) AND ((@IsNull_LogIP = 1 AND [LogIP] IS NULL) OR ([LogIP] = @Original_LogIP)) AND ((@IsNull_ModuleName = 1 AND [ModuleName] IS NULL) OR ([ModuleName] = @Original_ModuleName)) AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [tLogList] WHERE (([ID] = @Original_ID) AND ([CreateID] = @Original_CreateID) AND ([CreateDate] = @Original_CreateDate) AND ((@IsNull_LogType = 1 AND [LogType] IS NULL) OR ([LogType] = @Original_LogType)) AND ((@IsNull_LogIP = 1 AND [LogIP] IS NULL) OR ([LogIP] = @Original_LogIP)) AND ((@IsNull_ModuleName = 1 AND [ModuleName] IS NULL) OR ([ModuleName] = @Original_ModuleName)) AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LogType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LogType", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -4346,8 +4346,8 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Remark", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remark", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[tLogList] ([CreateID], [CreateDate], [LogType], [LogIP], [ModuleName], [Remark]) VALUES (@CreateID, @CreateDate, @LogType, @LogIP, @ModuleName, @Remark);
-SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogList WHERE (OID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [tLogList] ([CreateID], [CreateDate], [LogType], [LogIP], [ModuleName], [Remark]) VALUES (@CreateID, @CreateDate, @LogType, @LogIP, @ModuleName, @Remark);
+SELECT ID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogList WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4357,8 +4357,8 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Remark", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remark", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[tLogList] SET [CreateID] = @CreateID, [CreateDate] = @CreateDate, [LogType] = @LogType, [LogIP] = @LogIP, [ModuleName] = @ModuleName, [Remark] = @Remark WHERE (([OID] = @Original_OID) AND ([CreateID] = @Original_CreateID) AND ([CreateDate] = @Original_CreateDate) AND ((@IsNull_LogType = 1 AND [LogType] IS NULL) OR ([LogType] = @Original_LogType)) AND ((@IsNull_LogIP = 1 AND [LogIP] IS NULL) OR ([LogIP] = @Original_LogIP)) AND ((@IsNull_ModuleName = 1 AND [ModuleName] IS NULL) OR ([ModuleName] = @Original_ModuleName)) AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark)));
-SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogList WHERE (OID = @OID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [tLogList] SET [CreateID] = @CreateID, [CreateDate] = @CreateDate, [LogType] = @LogType, [LogIP] = @LogIP, [ModuleName] = @ModuleName, [Remark] = @Remark WHERE (([ID] = @Original_ID) AND ([CreateID] = @Original_CreateID) AND ([CreateDate] = @Original_CreateDate) AND ((@IsNull_LogType = 1 AND [LogType] IS NULL) OR ([LogType] = @Original_LogType)) AND ((@IsNull_LogIP = 1 AND [LogIP] IS NULL) OR ([LogIP] = @Original_LogIP)) AND ((@IsNull_ModuleName = 1 AND [ModuleName] IS NULL) OR ([ModuleName] = @Original_ModuleName)) AND ((@IsNull_Remark = 1 AND [Remark] IS NULL) OR ([Remark] = @Original_Remark)));
+SELECT ID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogList WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4366,7 +4366,7 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LogIP", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LogIP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ModuleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ModuleName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Remark", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remark", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LogType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LogType", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -4377,7 +4377,7 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ModuleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ModuleName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Remark", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remark", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Remark", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remark", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4393,8 +4393,8 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM dbo.tLo" +
-                "gList";
+            this._commandCollection[0].CommandText = "SELECT   ID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark\r\nFROM      " +
+                "tLogList";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4455,8 +4455,8 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_OID, int Original_CreateID, System.DateTime Original_CreateDate, string Original_LogType, string Original_LogIP, string Original_ModuleName, string Original_Remark) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_OID));
+        public virtual int Delete(int Original_ID, int Original_CreateID, System.DateTime Original_CreateDate, string Original_LogType, string Original_LogIP, string Original_ModuleName, string Original_Remark) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_CreateID));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_CreateDate));
             if ((Original_LogType == null)) {
@@ -4558,7 +4558,7 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int CreateID, System.DateTime CreateDate, string LogType, string LogIP, string ModuleName, string Remark, int Original_OID, int Original_CreateID, System.DateTime Original_CreateDate, string Original_LogType, string Original_LogIP, string Original_ModuleName, string Original_Remark, int OID) {
+        public virtual int Update(int CreateID, System.DateTime CreateDate, string LogType, string LogIP, string ModuleName, string Remark, int Original_ID, int Original_CreateID, System.DateTime Original_CreateDate, string Original_LogType, string Original_LogIP, string Original_ModuleName, string Original_Remark, int ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(CreateID));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(CreateDate));
             if ((LogType == null)) {
@@ -4585,7 +4585,7 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Remark));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_OID));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ID));
             this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_CreateID));
             this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(Original_CreateDate));
             if ((Original_LogType == null)) {
@@ -4620,7 +4620,7 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_Remark));
             }
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(OID));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4641,8 +4641,8 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int CreateID, System.DateTime CreateDate, string LogType, string LogIP, string ModuleName, string Remark, int Original_OID, int Original_CreateID, System.DateTime Original_CreateDate, string Original_LogType, string Original_LogIP, string Original_ModuleName, string Original_Remark) {
-            return this.Update(CreateID, CreateDate, LogType, LogIP, ModuleName, Remark, Original_OID, Original_CreateID, Original_CreateDate, Original_LogType, Original_LogIP, Original_ModuleName, Original_Remark, Original_OID);
+        public virtual int Update(int CreateID, System.DateTime CreateDate, string LogType, string LogIP, string ModuleName, string Remark, int Original_ID, int Original_CreateID, System.DateTime Original_CreateDate, string Original_LogType, string Original_LogIP, string Original_ModuleName, string Original_Remark) {
+            return this.Update(CreateID, CreateDate, LogType, LogIP, ModuleName, Remark, Original_ID, Original_CreateID, Original_CreateDate, Original_LogType, Original_LogIP, Original_ModuleName, Original_Remark, Original_ID);
         }
     }
     
@@ -4768,7 +4768,6 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "tException";
             tableMapping.ColumnMappings.Add("SortID", "SortID");
-            tableMapping.ColumnMappings.Add("OID", "OID");
             tableMapping.ColumnMappings.Add("CreateID", "CreateID");
             tableMapping.ColumnMappings.Add("CreateDate", "CreateDate");
             tableMapping.ColumnMappings.Add("UpdateID", "UpdateID");
@@ -4778,21 +4777,22 @@ SELECT OID, CreateID, CreateDate, LogType, LogIP, ModuleName, Remark FROM tLogLi
             tableMapping.ColumnMappings.Add("ExceptionTitle", "ExceptionTitle");
             tableMapping.ColumnMappings.Add("ExceptionSource", "ExceptionSource");
             tableMapping.ColumnMappings.Add("ExceptionContent", "ExceptionContent");
+            tableMapping.ColumnMappings.Add("ID", "ID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [tException] WHERE (([OID] = @Original_OID) AND ([VersionFlag] = @Ori" +
-                "ginal_VersionFlag))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [tException] WHERE (([ID] = @Original_ID) AND ([VersionFlag] = @Origi" +
+                "nal_VersionFlag))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VersionFlag", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VersionFlag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [tException] ([SortID], [OID], [CreateID], [CreateDate], [UpdateID], [UpdateDate], [DeleteFlag], [ExceptionTitle], [ExceptionSource], [ExceptionContent]) VALUES (@SortID, @OID, @CreateID, @CreateDate, @UpdateID, @UpdateDate, @DeleteFlag, @ExceptionTitle, @ExceptionSource, @ExceptionContent);
-SELECT SortID, OID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, ExceptionTitle, ExceptionSource, ExceptionContent FROM tException WHERE (OID = @OID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [tException] ([SortID], [ID], [CreateID], [CreateDate], [UpdateID], [UpdateDate], [DeleteFlag], [ExceptionTitle], [ExceptionSource], [ExceptionContent]) VALUES (@SortID, @ID, @CreateID, @CreateDate, @UpdateID, @UpdateDate, @DeleteFlag, @ExceptionTitle, @ExceptionSource, @ExceptionContent);
+SELECT SortID, ID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, ExceptionTitle, ExceptionSource, ExceptionContent FROM tException WHERE (ID = @ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SortID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SortID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4803,11 +4803,11 @@ SELECT SortID, OID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExceptionContent", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExceptionContent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [tException] SET [SortID] = @SortID, [OID] = @OID, [CreateID] = @CreateID, [CreateDate] = @CreateDate, [UpdateID] = @UpdateID, [UpdateDate] = @UpdateDate, [DeleteFlag] = @DeleteFlag, [ExceptionTitle] = @ExceptionTitle, [ExceptionSource] = @ExceptionSource, [ExceptionContent] = @ExceptionContent WHERE (([OID] = @Original_OID) AND ([VersionFlag] = @Original_VersionFlag));
-SELECT SortID, OID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, ExceptionTitle, ExceptionSource, ExceptionContent FROM tException WHERE (OID = @OID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [tException] SET [SortID] = @SortID, [ID] = @ID, [CreateID] = @CreateID, [CreateDate] = @CreateDate, [UpdateID] = @UpdateID, [UpdateDate] = @UpdateDate, [DeleteFlag] = @DeleteFlag, [ExceptionTitle] = @ExceptionTitle, [ExceptionSource] = @ExceptionSource, [ExceptionContent] = @ExceptionContent WHERE (([ID] = @Original_ID) AND ([VersionFlag] = @Original_VersionFlag));
+SELECT SortID, ID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, ExceptionTitle, ExceptionSource, ExceptionContent FROM tException WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SortID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SortID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4816,7 +4816,7 @@ SELECT SortID, OID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExceptionTitle", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExceptionTitle", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExceptionSource", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExceptionSource", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExceptionContent", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExceptionContent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VersionFlag", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VersionFlag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -4833,9 +4833,9 @@ SELECT SortID, OID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT   SortID, OID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, De" +
-                "leteFlag, ExceptionTitle, ExceptionSource, \r\n                ExceptionContent\r\nF" +
-                "ROM      tException";
+            this._commandCollection[0].CommandText = "SELECT   SortID, ID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del" +
+                "eteFlag, ExceptionTitle, ExceptionSource, \r\n                ExceptionContent\r\nFR" +
+                "OM      tException";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4890,141 +4890,6 @@ SELECT SortID, OID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(global::System.Data.DataRow[] dataRows) {
             return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_OID, byte[] Original_VersionFlag) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_OID));
-            if ((Original_VersionFlag == null)) {
-                throw new global::System.ArgumentNullException("Original_VersionFlag");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((byte[])(Original_VersionFlag));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int SortID, int OID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string ExceptionTitle, string ExceptionSource, string ExceptionContent) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SortID));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(OID));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(CreateID));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(CreateDate));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(UpdateID));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(UpdateDate));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(DeleteFlag));
-            if ((ExceptionTitle == null)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(ExceptionTitle));
-            }
-            if ((ExceptionSource == null)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(ExceptionSource));
-            }
-            if ((ExceptionContent == null)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(ExceptionContent));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int SortID, int OID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string ExceptionTitle, string ExceptionSource, string ExceptionContent, int Original_OID, byte[] Original_VersionFlag) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(SortID));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(OID));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(CreateID));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(CreateDate));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(UpdateID));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(UpdateDate));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(DeleteFlag));
-            if ((ExceptionTitle == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(ExceptionTitle));
-            }
-            if ((ExceptionSource == null)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(ExceptionSource));
-            }
-            if ((ExceptionContent == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(ExceptionContent));
-            }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_OID));
-            if ((Original_VersionFlag == null)) {
-                throw new global::System.ArgumentNullException("Original_VersionFlag");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((byte[])(Original_VersionFlag));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int SortID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string ExceptionTitle, string ExceptionSource, string ExceptionContent, int Original_OID, byte[] Original_VersionFlag) {
-            return this.Update(SortID, Original_OID, CreateID, CreateDate, UpdateID, UpdateDate, DeleteFlag, ExceptionTitle, ExceptionSource, ExceptionContent, Original_OID, Original_VersionFlag);
         }
     }
     
@@ -5149,7 +5014,6 @@ SELECT SortID, OID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "tMessage";
-            tableMapping.ColumnMappings.Add("OID", "OID");
             tableMapping.ColumnMappings.Add("SortID", "SortID");
             tableMapping.ColumnMappings.Add("CreateDate", "CreateDate");
             tableMapping.ColumnMappings.Add("CreateID", "CreateID");
@@ -5163,51 +5027,8 @@ SELECT SortID, OID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             tableMapping.ColumnMappings.Add("MessageContent", "MessageContent");
             tableMapping.ColumnMappings.Add("MessageFlag", "MessageFlag");
             tableMapping.ColumnMappings.Add("Remark", "Remark");
+            tableMapping.ColumnMappings.Add("ID", "ID");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [tMessage] WHERE (([OID] = @Original_OID) AND ([VersionFlag] = @Origi" +
-                "nal_VersionFlag))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VersionFlag", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VersionFlag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [tMessage] ([SortID], [CreateDate], [CreateID], [UpdateID], [UpdateDate], [DeleteFlag], [LanguageType], [MessageType], [MessageCode], [MessageContent], [MessageFlag], [Remark]) VALUES (@SortID, @CreateDate, @CreateID, @UpdateID, @UpdateDate, @DeleteFlag, @LanguageType, @MessageType, @MessageCode, @MessageContent, @MessageFlag, @Remark);
-SELECT OID, SortID, CreateDate, CreateID, UpdateID, UpdateDate, VersionFlag, DeleteFlag, LanguageType, MessageType, MessageCode, MessageContent, MessageFlag, Remark FROM tMessage WHERE (OID = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SortID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SortID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DeleteFlag", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DeleteFlag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LanguageType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LanguageType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageCode", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageContent", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageContent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageFlag", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageFlag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Remark", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remark", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [tMessage] SET [SortID] = @SortID, [CreateDate] = @CreateDate, [CreateID] = @CreateID, [UpdateID] = @UpdateID, [UpdateDate] = @UpdateDate, [DeleteFlag] = @DeleteFlag, [LanguageType] = @LanguageType, [MessageType] = @MessageType, [MessageCode] = @MessageCode, [MessageContent] = @MessageContent, [MessageFlag] = @MessageFlag, [Remark] = @Remark WHERE (([OID] = @Original_OID) AND ([VersionFlag] = @Original_VersionFlag));
-SELECT OID, SortID, CreateDate, CreateID, UpdateID, UpdateDate, VersionFlag, DeleteFlag, LanguageType, MessageType, MessageCode, MessageContent, MessageFlag, Remark FROM tMessage WHERE (OID = @OID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SortID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SortID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UpdateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UpdateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DeleteFlag", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DeleteFlag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LanguageType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LanguageType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageCode", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageContent", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageContent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MessageFlag", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MessageFlag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Remark", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remark", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VersionFlag", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VersionFlag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5223,9 +5044,9 @@ SELECT OID, SortID, CreateDate, CreateID, UpdateID, UpdateDate, VersionFlag, Del
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT   OID, SortID, CreateDate, CreateID, UpdateID, UpdateDate, VersionFlag, De" +
-                "leteFlag, LanguageType, MessageType, \r\n                MessageCode, MessageConte" +
-                "nt, MessageFlag, Remark\r\nFROM      tMessage";
+            this._commandCollection[0].CommandText = "SELECT   ID, SortID, CreateDate, CreateID, UpdateID, UpdateDate, VersionFlag, Del" +
+                "eteFlag, LanguageType, MessageType, \r\n                MessageCode, MessageConten" +
+                "t, MessageFlag, Remark\r\nFROM      tMessage";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5251,205 +5072,6 @@ SELECT OID, SortID, CreateDate, CreateID, UpdateID, UpdateDate, VersionFlag, Del
             ConfigDataSet.tMessageDataTable dataTable = new ConfigDataSet.tMessageDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(ConfigDataSet.tMessageDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(ConfigDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "tMessage");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_OID, byte[] Original_VersionFlag) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_OID));
-            if ((Original_VersionFlag == null)) {
-                throw new global::System.ArgumentNullException("Original_VersionFlag");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((byte[])(Original_VersionFlag));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int SortID, System.DateTime CreateDate, int CreateID, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string LanguageType, string MessageType, string MessageCode, string MessageContent, string MessageFlag, string Remark) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SortID));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(CreateDate));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(CreateID));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(UpdateID));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(UpdateDate));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(DeleteFlag));
-            if ((LanguageType == null)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(LanguageType));
-            }
-            if ((MessageType == null)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(MessageType));
-            }
-            if ((MessageCode == null)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(MessageCode));
-            }
-            if ((MessageContent == null)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(MessageContent));
-            }
-            if ((MessageFlag == null)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(MessageFlag));
-            }
-            if ((Remark == null)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(Remark));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int SortID, System.DateTime CreateDate, int CreateID, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string LanguageType, string MessageType, string MessageCode, string MessageContent, string MessageFlag, string Remark, int Original_OID, byte[] Original_VersionFlag, int OID) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(SortID));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(CreateDate));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(CreateID));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(UpdateID));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(UpdateDate));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(DeleteFlag));
-            if ((LanguageType == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(LanguageType));
-            }
-            if ((MessageType == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(MessageType));
-            }
-            if ((MessageCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(MessageCode));
-            }
-            if ((MessageContent == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(MessageContent));
-            }
-            if ((MessageFlag == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(MessageFlag));
-            }
-            if ((Remark == null)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Remark));
-            }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_OID));
-            if ((Original_VersionFlag == null)) {
-                throw new global::System.ArgumentNullException("Original_VersionFlag");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((byte[])(Original_VersionFlag));
-            }
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(OID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int SortID, System.DateTime CreateDate, int CreateID, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string LanguageType, string MessageType, string MessageCode, string MessageContent, string MessageFlag, string Remark, int Original_OID, byte[] Original_VersionFlag) {
-            return this.Update(SortID, CreateDate, CreateID, UpdateID, UpdateDate, DeleteFlag, LanguageType, MessageType, MessageCode, MessageContent, MessageFlag, Remark, Original_OID, Original_VersionFlag, Original_OID);
         }
     }
     
@@ -5574,7 +5196,6 @@ SELECT OID, SortID, CreateDate, CreateID, UpdateID, UpdateDate, VersionFlag, Del
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "tExceptionList";
-            tableMapping.ColumnMappings.Add("OID", "OID");
             tableMapping.ColumnMappings.Add("SortID", "SortID");
             tableMapping.ColumnMappings.Add("CreateID", "CreateID");
             tableMapping.ColumnMappings.Add("CreateDate", "CreateDate");
@@ -5584,20 +5205,21 @@ SELECT OID, SortID, CreateDate, CreateID, UpdateID, UpdateDate, VersionFlag, Del
             tableMapping.ColumnMappings.Add("DeleteFlag", "DeleteFlag");
             tableMapping.ColumnMappings.Add("ExceptionTitle", "ExceptionTitle");
             tableMapping.ColumnMappings.Add("ExceptionSource", "ExceptionSource");
+            tableMapping.ColumnMappings.Add("ID", "ID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [tExceptionList] WHERE (([OID] = @Original_OID) AND ([VersionFlag] = " +
-                "@Original_VersionFlag))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [tExceptionList] WHERE (([ID] = @Original_ID) AND ([VersionFlag] = @O" +
+                "riginal_VersionFlag))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VersionFlag", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VersionFlag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [tExceptionList] ([OID], [SortID], [CreateID], [CreateDate], [UpdateID], [UpdateDate], [DeleteFlag], [ExceptionTitle], [ExceptionSource]) VALUES (@OID, @SortID, @CreateID, @CreateDate, @UpdateID, @UpdateDate, @DeleteFlag, @ExceptionTitle, @ExceptionSource);
-SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, ExceptionTitle, ExceptionSource FROM tExceptionList WHERE (OID = @OID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [tExceptionList] ([ID], [SortID], [CreateID], [CreateDate], [UpdateID], [UpdateDate], [DeleteFlag], [ExceptionTitle], [ExceptionSource]) VALUES (@ID, @SortID, @CreateID, @CreateDate, @UpdateID, @UpdateDate, @DeleteFlag, @ExceptionTitle, @ExceptionSource);
+SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, ExceptionTitle, ExceptionSource FROM tExceptionList WHERE (ID = @ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SortID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SortID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5608,10 +5230,10 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExceptionSource", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExceptionSource", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [tExceptionList] SET [OID] = @OID, [SortID] = @SortID, [CreateID] = @CreateID, [CreateDate] = @CreateDate, [UpdateID] = @UpdateID, [UpdateDate] = @UpdateDate, [DeleteFlag] = @DeleteFlag, [ExceptionTitle] = @ExceptionTitle, [ExceptionSource] = @ExceptionSource WHERE (([OID] = @Original_OID) AND ([VersionFlag] = @Original_VersionFlag));
-SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, ExceptionTitle, ExceptionSource FROM tExceptionList WHERE (OID = @OID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [tExceptionList] SET [ID] = @ID, [SortID] = @SortID, [CreateID] = @CreateID, [CreateDate] = @CreateDate, [UpdateID] = @UpdateID, [UpdateDate] = @UpdateDate, [DeleteFlag] = @DeleteFlag, [ExceptionTitle] = @ExceptionTitle, [ExceptionSource] = @ExceptionSource WHERE (([ID] = @Original_ID) AND ([VersionFlag] = @Original_VersionFlag));
+SELECT ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, DeleteFlag, ExceptionTitle, ExceptionSource FROM tExceptionList WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SortID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SortID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreateDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreateDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5620,7 +5242,7 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DeleteFlag", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DeleteFlag", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExceptionTitle", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExceptionTitle", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExceptionSource", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExceptionSource", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VersionFlag", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VersionFlag", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -5637,9 +5259,8 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT   OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, De" +
-                "leteFlag, ExceptionTitle, \r\n                ExceptionSource\r\nFROM      tExceptio" +
-                "nList";
+            this._commandCollection[0].CommandText = "SELECT   ID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del" +
+                "eteFlag, ExceptionTitle, ExceptionSource\r\nFROM      tExceptionList";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5695,129 +5316,6 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
         public virtual int Update(global::System.Data.DataRow[] dataRows) {
             return this.Adapter.Update(dataRows);
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_OID, byte[] Original_VersionFlag) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_OID));
-            if ((Original_VersionFlag == null)) {
-                throw new global::System.ArgumentNullException("Original_VersionFlag");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((byte[])(Original_VersionFlag));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int OID, int SortID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string ExceptionTitle, string ExceptionSource) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(OID));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(SortID));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(CreateID));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(CreateDate));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(UpdateID));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(UpdateDate));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(DeleteFlag));
-            if ((ExceptionTitle == null)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(ExceptionTitle));
-            }
-            if ((ExceptionSource == null)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(ExceptionSource));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int OID, int SortID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string ExceptionTitle, string ExceptionSource, int Original_OID, byte[] Original_VersionFlag) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(OID));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(SortID));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(CreateID));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(CreateDate));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(UpdateID));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(UpdateDate));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(DeleteFlag));
-            if ((ExceptionTitle == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(ExceptionTitle));
-            }
-            if ((ExceptionSource == null)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(ExceptionSource));
-            }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_OID));
-            if ((Original_VersionFlag == null)) {
-                throw new global::System.ArgumentNullException("Original_VersionFlag");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((byte[])(Original_VersionFlag));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int SortID, int CreateID, System.DateTime CreateDate, int UpdateID, System.DateTime UpdateDate, bool DeleteFlag, string ExceptionTitle, string ExceptionSource, int Original_OID, byte[] Original_VersionFlag) {
-            return this.Update(Original_OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, DeleteFlag, ExceptionTitle, ExceptionSource, Original_OID, Original_VersionFlag);
-        }
     }
     
     /// <summary>
@@ -5837,8 +5335,6 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
         private tLogListTableAdapter _tLogListTableAdapter;
         
         private tExceptionTableAdapter _tExceptionTableAdapter;
-        
-        private tMessageTableAdapter _tMessageTableAdapter;
         
         private tExceptionListTableAdapter _tExceptionListTableAdapter;
         
@@ -5904,20 +5400,6 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public tMessageTableAdapter tMessageTableAdapter {
-            get {
-                return this._tMessageTableAdapter;
-            }
-            set {
-                this._tMessageTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
         public tExceptionListTableAdapter tExceptionListTableAdapter {
             get {
                 return this._tExceptionListTableAdapter;
@@ -5958,10 +5440,6 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
                             && (this._tExceptionTableAdapter.Connection != null))) {
                     return this._tExceptionTableAdapter.Connection;
                 }
-                if (((this._tMessageTableAdapter != null) 
-                            && (this._tMessageTableAdapter.Connection != null))) {
-                    return this._tMessageTableAdapter.Connection;
-                }
                 if (((this._tExceptionListTableAdapter != null) 
                             && (this._tExceptionListTableAdapter.Connection != null))) {
                     return this._tExceptionListTableAdapter.Connection;
@@ -5986,9 +5464,6 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
                     count = (count + 1);
                 }
                 if ((this._tExceptionTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._tMessageTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._tExceptionListTableAdapter != null)) {
@@ -6029,15 +5504,6 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tExceptionTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tMessageTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tMessage.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tMessageTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -6084,14 +5550,6 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tMessageTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tMessage.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tMessageTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._tExceptionListTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.tExceptionList.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -6115,14 +5573,6 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tExceptionListTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._tMessageTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tMessage.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tMessageTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -6201,10 +5651,6 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
                         && (this.MatchTableAdapterConnection(this._tExceptionTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
             }
-            if (((this._tMessageTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tMessageTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
-            }
             if (((this._tExceptionListTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._tExceptionListTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
@@ -6265,15 +5711,6 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
                     if (this._tExceptionTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._tExceptionTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tExceptionTableAdapter.Adapter);
-                    }
-                }
-                if ((this._tMessageTableAdapter != null)) {
-                    revertConnections.Add(this._tMessageTableAdapter, this._tMessageTableAdapter.Connection);
-                    this._tMessageTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tMessageTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tMessageTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tMessageTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tMessageTableAdapter.Adapter);
                     }
                 }
                 if ((this._tExceptionListTableAdapter != null)) {
@@ -6354,10 +5791,6 @@ SELECT OID, SortID, CreateID, CreateDate, UpdateID, UpdateDate, VersionFlag, Del
                 if ((this._tExceptionTableAdapter != null)) {
                     this._tExceptionTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tExceptionTableAdapter]));
                     this._tExceptionTableAdapter.Transaction = null;
-                }
-                if ((this._tMessageTableAdapter != null)) {
-                    this._tMessageTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tMessageTableAdapter]));
-                    this._tMessageTableAdapter.Transaction = null;
                 }
                 if ((this._tExceptionListTableAdapter != null)) {
                     this._tExceptionListTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tExceptionListTableAdapter]));

@@ -11,7 +11,7 @@ namespace JMongolModel.Table
         /// <summary>
         /// 主键ID
         /// </summary>
-        public const string OID = "OID";
+        public const string ID = "OID";
 
         /// <summary>
         /// 排序ID
