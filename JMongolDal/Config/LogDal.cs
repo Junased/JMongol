@@ -26,7 +26,8 @@ namespace JMongolDal.Config
         /// <returns>满足查询条件的数据记录数</returns>
         public int GetDataTable(string strSQLWhere,string strSQLOrder,int start,int count,ConfigDataSet.tLogListDataTable table)
         {
-            string strSQL = " Select OID, CreateID, CreateDate, LogType, LogIP, ModuleName From tLog Where " + base.DeleteFalse;
+            //string strSQL = " Select OID, CreateID, CreateDate, LogType, LogIP, ModuleName From tLog Where " + base.DeleteFalse;
+            string strSQL = Const.Select + Const.ID + Const.Comma + Const.CreateID + Const.Comma + Const.CreateDate + Const.Comma + tLog.LogType + Const.Comma + tLog.LogIP + Const.Comma + tLog.ModuleName + Const.From + tLog.Name + Const.Where + base.DeleteFalse;
             if (strSQLWhere != string.Empty)
             {
                 strSQL += Const.AND + strSQLWhere;
@@ -103,7 +104,14 @@ namespace JMongolDal.Config
             base.Update(row, userID, strUserIP, moduleName);
         }
 
-
+        /// <summary>
+        /// 记录日志，用于查看数据记录
+        /// </summary>
+        /// <param name="userID">登录用户ID</param>
+        /// <param name="userIP">登录用户IP</param>
+        /// <param name="moduleName">操作模块</param>
+        /// <param name="tableName">物理表名称</param>
+        /// <param name="oid">行记录OID</param>
         public new void WriteLog<T>(T t, Common.LogType logType, int userID, string userIP, string moduleName)
             where T : DataRow
         {
