@@ -65,6 +65,7 @@
     <Compile Include="Table\tBase.cs" />
     <Compile Include="Table\tException.cs" />
     <Compile Include="Table\tLog.cs" />
+    <Compile Include="Table\tMessage.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
