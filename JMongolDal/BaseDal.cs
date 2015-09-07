@@ -14,44 +14,35 @@ namespace JMongolDal
 {
     public class BaseDal
     {
+        #region 数据Update
 
-        #region 数据update
-
-        /// <summary>
-        /// 记录日志，添加数据
-        /// </summary>
-        /// <param name="row">数据行</param>
-        /// <param name="userID">当前登录用的ID</param>
-        /// <param name="strUserIP">当前登录用户的IP</param>
-        /// <param name="moduleName">模块名称</param>
-        /// <returns>返回是否成功更新数据</returns>
-        public virtual bool Update(DataRow row,int userID,string strUserIP,string moduleName)
+        public virtual bool Update(DataRow row, int userID, string userIP, string moduleName)
         {
             bool b = false;
-            DataRowState state = row.RowState;
-            if (state == DataRowState.Unchanged)
-            { 
+            if (row.RowState == DataRowState.Unchanged)
+            {
                 return b;
-            }
+            } 
             this.SetRowUpdateValue(row, userID);
+            DataRowState state = row.RowState;
             if (state == DataRowState.Added)
             {
                 //添加数据
                 b = AdapterDBHelp.Update(row);
                 //记录日志
-                this.WriteLog(row, Common.LogType.Add, userID, strUserIP, moduleName);
+                this.WriteLog(row, LogType.Add, userID, userIP, moduleName);
             }
             else if (state == DataRowState.Deleted)
             {
                 //记录日志
-                this.WriteLog(row, Common.LogType.Delete, userID, strUserIP, moduleName);
+                this.WriteLog(row, LogType.Delete, userID, userIP, moduleName);
                 //添加数据
                 b = AdapterDBHelp.Update(row);
             }
             else
             {
                 //记录日志
-                this.WriteLog(row, Common.LogType.Update, userID, strUserIP, moduleName);
+                this.WriteLog(row, LogType.Update, userID, userIP, moduleName);
                 //添加数据
                 b = AdapterDBHelp.Update(row);
             }
@@ -71,10 +62,9 @@ namespace JMongolDal
         /// <param name="row">数据行</param>
         /// <param name="userID">用户ID</param>
         /// <returns>返回更改过的数据行</returns>
-        protected virtual DataRow SetRowUpdateValue(DataRow row,int userID)
+        protected virtual DataRow SetRowUpdateValue(DataRow row, int userID)
         {
-            DataRowState state = row.RowState;
-            if (state == DataRowState.Detached || state == DataRowState.Added)
+            if (row.RowState == DataRowState.Detached || row.RowState == DataRowState.Added)
             {
                 if (row.Table.Columns.IndexOf(Const.SortID) >= 0)
                 {
@@ -92,67 +82,124 @@ namespace JMongolDal
                     row[Const.DeleteFlag] = false;
             }
             if (row.Table.Columns.IndexOf(Const.UpdateID) >= 0)
-            {
-                row[Const.UpdateID] = userID; 
-            }
+                row[Const.UpdateID] = userID;
             if (row.Table.Columns.IndexOf(Const.UpdateDate) >= 0)
-            { 
                 row[Const.UpdateDate] = DateTime.Now;
-            }
 
-            if (state == DataRowState.Detached)
+            if (row.RowState == DataRowState.Detached)
             {
                 DataTable table = row.Table;
                 table.Rows.Add(row);
             }
             return row;
         }
+
         #endregion
 
+        #region 数据Query
 
-        public virtual string GetSQLString(string strTabelName,string strSQLWhere,string strSQLOrder,int start,int count)
+        public T GetDataSet<T>(string tableName, string sqlWhere, string sqlOrder, T t) where T : DataSet
         {
-            //定义语句
-            string strSQL = Const.Select + Const.StarSign + Const.From + Const.LeftBracket + Const.Select + "ROW_NUMBER() OVER" + Const.LeftBracket + Const.OrderBy;
-            //定义排序
-            if (strSQLOrder == string.Empty)
+            return this.GetDataSet(tableName, sqlWhere, sqlOrder, 0, 0, t);
+        }
+
+        public T GetDataSet<T>(string tableName, string sqlWhere, string sqlOrder, int start, int count, T t) where T : DataSet
+        {
+            return QueryDBHelp.Query(this.GetSQLString(tableName, sqlWhere, sqlOrder, start, count), start, count, tableName, t);
+        }
+
+        public int GetDataTable<T>(string tableName, string sqlWhere, string sqlOrder, T t) where T : DataTable
+        {
+            return this.GetDataTable(tableName, sqlWhere, sqlOrder, 0, 0, t);
+        }
+
+        public int GetDataTable<T>(string tableName, string sqlWhere, string sqlOrder, int start, int count, T t) where T : DataTable
+        {
+            return QueryDBHelp.QueryDataTable(this.GetSQLCountString(tableName, sqlWhere), this.GetSQLString(tableName, sqlWhere, sqlOrder, start, count), start, count, true, t);
+        }
+
+        public int GetDataTable<T>(string tableName, string sqlWhere, T t, int userID, string userIP, string moduleName) where T : DataTable
+        {
+            int recordCount = this.GetDataTable(tableName, sqlWhere, string.Empty, 0, 0, t);
+            if (recordCount == 1)
             {
-                strSQL += Const.ID + Const.Asc;
+                this.WriteLog(t.Rows[0], LogType.View, userID, userIP, moduleName);
+            }
+            return recordCount;
+        }
+
+        /// <summary>
+        /// 通过传入视图名,查询数据集
+        /// </summary>
+        /// <param name="viewName">表名</param>
+        /// <param name="t">待填充的数据集</param>
+        /// <returns>满足查询条件的数据记录数</returns>
+        public static int GetDataTable(string viewName, DataTable t)
+        {
+            return QueryDBHelp.QueryDataTable(Const.Select + Const.StarSign + Const.From + viewName, t);
+        }
+
+        /// <summary>
+        /// 构造数据查询语句
+        /// </summary>
+        protected virtual string GetSQLString(string tableName, string sqlWhere, string sqlOrder, int start, int count)
+        {
+            // 定义语句
+            string sqlString = "Select * from (Select ROW_NUMBER() OVER (ORDER BY ";
+            // 定义排序
+            if (sqlOrder == string.Empty)
+            {
+                sqlString += Const.ID + Const.Asc;
             }
             else
             {
-                strSQL += strSQLOrder;
+                sqlString += sqlOrder;
             }
-            strSQLOrder += Const.RightBracket + Const.AS + " ROWID " + Const.Comma + Const.StarSign + Const.From;
-
-            //定义条件
-            strSQL += strTabelName + Const.Where + this.DeleteFalse;
-            if (strSQLWhere != string.Empty)
+            sqlString += ") AS ROWID,*  From ";
+            // 定义条件
+            sqlString += tableName + Const.Where + this.DeleteFalse;
+            if (sqlWhere != string.Empty)
             {
-                strSQL += Const.AND + strSQLWhere;
+                sqlString += Const.AND + sqlWhere;
             }
-            return "";
-        }
+            sqlString += " ) t  ";
 
-
-        /// <summary>
-        /// 获取特定表中的符合筛选条件的条目个数
-        /// </summary>
-        /// <param name="tableName">表名</param>
-        /// <param name="strSQLWhere">筛选条件</param>
-        /// <returns></returns>
-        protected string GetSQLCountString(string tableName, string strSQLWhere)
-        {
-            string sqlString = Const.Select + Const.Count + Const.LeftBracket + Const.StarSign + Const.RightBracket + Const.From + tableName + Const.Where + this.DeleteFalse;
-            if (strSQLWhere != string.Empty)
+            // 获取部分数据 
+            if (count > 0)
             {
-                sqlString += Const.AND + strSQLWhere;
+                sqlString += "WHERE t.ROWID BETWEEN " + (start + 1).ToString() + Const.AND + (start + count).ToString();
             }
             return sqlString.Trim();
         }
 
+        /// <summary>
+        /// 针对统计分页调用的方法
+        /// </summary>
+        /// <param name="sql">完整的统计SQL</param>
+        /// <param name="sqlOrder">排序条件</param>
+        /// <param name="start">开始页码</param>
+        /// <param name="count">取得数据</param>
+        /// <returns></returns>
+        protected string GetCountString(string sql, string sqlOrder, int start, int count)
+        {
+            string countSql = "Select * from (Select ROW_NUMBER() OVER (ORDER BY " + sqlOrder + ") AS ROWID,*  From (" + sql + ")) t WHERE t.ROWID BETWEEN " + (start + 1).ToString() + Const.AND + (start + count).ToString();
+            return countSql;
 
-        #region 记录日志
+        }
+
+        protected string GetSQLCountString(string tableName, string sqlWhere)
+        {
+            string sqlString = Const.Select + Const.Count + Const.LeftBracket + Const.StarSign + Const.RightBracket + Const.From + tableName + Const.Where + this.DeleteFalse;
+            if (sqlWhere != string.Empty)
+            {
+                sqlString += Const.AND + sqlWhere;
+            }
+            return sqlString.Trim();
+        }
+        #endregion
+
+        #region  记录日志
+
         /// <summary>
         /// 系统操作自动记录日志
         /// </summary>
@@ -160,39 +207,42 @@ namespace JMongolDal
         /// <param name="t">带操作的强类型数据行</param>
         /// <param name="logType">日志操作类型</param>
         /// <param name="userID">当前操作的用户ID</param>
-        public void WriteLog<T>(T t, Common.LogType logType, int userID, string userIP, string moduleName) where T : DataRow
+        public void WriteLog<T>(T t, LogType logType, int userID, string userIP, string moduleName) where T : DataRow
         {
             //当前非实名用户操作，则不记载日志
             if (userID == 0) return;
 
             LogDal rule = new LogDal();
+            //rule.WriteLog(t, logType, userID, userIP, moduleName);
             rule.WriteLog(t, logType, userID, userIP, moduleName);
         }
+
         #endregion
 
         #region 常用属性
 
         /// <summary>
-        /// 数据表中删除标记为false的条件
+        /// 数据表中删除标记为False的条件
         /// </summary>
         protected string DeleteFalse
         {
             get
             {
-                return Const.Delete + Const.EqualMark + Const.Zero;
+                return Const.DeleteFlag + Const.EqualMark + Const.Zero;
             }
         }
 
         /// <summary>
-        /// 数据表中删除标记为true的条件
+        /// 数据表中删除标记为True的条件
         /// </summary>
         protected string DeleteTrue
         {
             get
             {
-                return Const.Delete + Const.EqualMark + Const.One;
+                return Const.DeleteFlag + Const.EqualMark + Const.One;
             }
-        } 
+        }
+
         #endregion
     }
 }

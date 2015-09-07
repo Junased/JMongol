@@ -47,7 +47,7 @@ namespace JMongolDal.Config
         /// <param name="logType">日志类型</param>
         /// <param name="strUserIP">登录ip</param>
         /// <returns>日志数据行</returns>
-        private ConfigDataSet.tLogRow InitRow(Common.LogType logType,string strUserIP)
+        private ConfigDataSet.tLogRow InitRow(LogType logType,string strUserIP)
         {
             ConfigDataSet.tLogDataTable table = new ConfigDataSet.tLogDataTable();
             ConfigDataSet.tLogRow row = table.NewtLogRow();
@@ -78,7 +78,7 @@ namespace JMongolDal.Config
         /// <param name="logType">日志类型</param>
         /// <param name="userID">当前登录用的ID</param>
         /// <param name="strUserIP">当前登录用的IP</param>
-        public void WriteLog(Common.LogType logType,int userID,string strUserIP)
+        public void WriteLog(LogType logType,int userID,string strUserIP)
         {
             ConfigDataSet.tLogRow row = this.InitRow(logType, strUserIP);
             row.SourceContent = row.LogType;
@@ -97,7 +97,7 @@ namespace JMongolDal.Config
         /// <param name="oid">行记录oid</param>
         public void WriteLog(int userID,string strUserIP,string moduleName,string tableName,int oid)
         {
-            ConfigDataSet.tLogRow row = this.InitRow(Common.LogType.View, strUserIP);
+            ConfigDataSet.tLogRow row = this.InitRow(LogType.View, strUserIP);
             row.SourceContent = tableName;
             row.UpdateContent = oid.ToString();
             row.ModuleName = moduleName;
@@ -112,12 +112,12 @@ namespace JMongolDal.Config
         /// <param name="moduleName">操作模块</param>
         /// <param name="tableName">物理表名称</param>
         /// <param name="oid">行记录OID</param>
-        public new void WriteLog<T>(T t, Common.LogType logType, int userID, string userIP, string moduleName)
+        public void WriteLog<T>(T t, LogType logType, int userID, string userIP, string moduleName)
             where T : DataRow
         {
             if (t is ConfigDataSet.tLogRow || t is ConfigDataSet.tExceptionRow) return;
 
-            if (logType == Common.LogType.LogIn || logType == Common.LogType.LogOut)
+            if (logType == LogType.LogIn || logType == LogType.LogOut)
                 this.WriteLog(logType, userID, userIP);
 
             string oid = string.Empty;
@@ -130,23 +130,23 @@ namespace JMongolDal.Config
                 oid = Const.Zero;
             }
 
-            if (logType == Common.LogType.View)
+            if (logType == LogType.View)
                 this.WriteLog(userID, userIP, moduleName, t.Table.TableName, int.Parse(oid));
 
             ConfigDataSet.tLogRow row = this.InitRow(logType, userIP);
 
             string sourceContent = Const.TableName + Const.EqualMark + t.Table.TableName + Const.Separator + Const.BreakLine;
             string updateContent = Const.TableName + Const.EqualMark + t.Table.TableName + Const.Separator + Const.BreakLine;
-            if (logType == Common.LogType.Update || logType == Common.LogType.LogicDelete)
+            if (logType == LogType.Update || logType == LogType.LogicDelete)
             {
                 if (t.Table.Columns.IndexOf(Const.DeleteFlag) >= 0 && ((bool)t[Const.DeleteFlag]) == true)
                 {
-                    row.LogType = Common.LogType.LogicDelete.ToString();
+                    row.LogType = LogType.LogicDelete.ToString();
                 }
                 sourceContent += this.OperateRow(t, DataRowVersion.Original);
                 updateContent += this.OperateRow(t, DataRowVersion.Current);
             }
-            else if (logType == Common.LogType.Add || logType == Common.LogType.Delete)
+            else if (logType == LogType.Add || logType == LogType.Delete)
             {
                 sourceContent += this.OperateRow(t, DataRowVersion.Current);
             }
