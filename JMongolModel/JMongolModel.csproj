@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SystemConst.cs" />
     <Compile Include="SystemEnum.cs" />
     <Compile Include="Const.cs" />
     <Compile Include="Convert.cs" />
