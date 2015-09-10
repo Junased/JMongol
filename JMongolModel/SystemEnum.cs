@@ -9,7 +9,8 @@ using System.IO;
 
 namespace JMongolModel
 {
-    public class Common
+    
+    public class SystemEnum
     {
         public static string PutByKey(string text, string key)
         {
@@ -17,6 +18,10 @@ namespace JMongolModel
         }
 
     }
+
+    /// <summary>
+    /// 框架中将会用到的所有枚举汇总
+    /// </summary>
     #region 日志类型
     /// <summary>
     /// 日志类型
