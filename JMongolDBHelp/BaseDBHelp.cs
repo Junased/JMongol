@@ -16,7 +16,7 @@ namespace JMongolDBHelp
         //获取数据库连接字符串
         public static string con = ConfigurationManager.AppSettings["ConnectionString"];
         private static string key = ConfigurationManager.AppSettings["ConKey"];
-        protected static string ConnectionString = Common.PutByKey(con, key);
+        protected static string ConnectionString = SystemEnum.PutByKey(con, key);
         //当前记录未被删除的标志
         protected static string DeleteFalseFilter = Const.Delete + Const.EqualMark + Const.Zero;
 
