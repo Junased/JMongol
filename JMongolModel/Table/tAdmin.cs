@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JMongolModel.Table
+namespace SystemCommon.Table
 {
     /// <summary>
-    /// 日志处理，包含数据库中日志表中的所有字段
+    /// 管理员，包含数据库中管理员表的所有字段
     /// </summary>
-    public struct tLog
+    public struct tAdmin
     {
-
         /// <summary>
         /// 名称
         /// </summary>
-        public const string Name = "tLog";
+        public const string Name = "tAdmin";
 
         /// <summary>
         /// 主键ID
@@ -58,33 +52,65 @@ namespace JMongolModel.Table
         public const string VersionFlag = "VersionFlag";
 
         /// <summary>
-        /// 登陆、注销、添加、修改、删除、假删、查看
+        /// 登录账号
         /// </summary>
-        public const string LogType = "LogType";
+        public const string LoginNO = "LoginNO";
 
         /// <summary>
-        /// 日志IP：记载操作的IP
+        /// 登录密码实际长度6-20个
         /// </summary>
-        public const string LogIP = "LogIP";
+        public const string Password = "Password";
 
         /// <summary>
-        /// 源表内容：记载表名、各列内容
+        /// 用户的真实姓名
         /// </summary>
-        public const string SourceContent = "SourceContent";
+        public const string UserName = "UserName";
 
         /// <summary>
-        /// 新表内容：记载表名、各列内容
+        /// 联系电话
         /// </summary>
-        public const string UpdateContent = "UpdateContent";
+        public const string LinkTel = "LinkTel";
 
         /// <summary>
-        /// 模块名称：记载相应操作的模块栏目
+        /// 电子邮箱
         /// </summary>
-        public const string ModuleName = "ModuleName";
+        public const string Email = "Email";
+
+        /// <summary>
+        /// QQ
+        /// </summary>
+        public const string QQ = "QQ";
+
+        /// <summary>
+        /// 对应角色表OID
+        /// </summary>
+        public const string RoleID = "RoleID";
+
+        /// <summary>
+        /// 对应部门表OID
+        /// </summary>
+        public const string DeptmentID = "DeptmentID";
+
+        /// <summary>
+        /// 对应职位表OID
+        /// </summary>
+        public const string DutyID = "DutyID";
+
+        /// <summary>
+        /// 密码提示问题
+        /// </summary>
+        public const string PromptQuestion = "PromptQuestion";
+
+        /// <summary>
+        /// 密码找回答案
+        /// </summary>
+        public const string ReturnAnswer = "ReturnAnswer";
 
         /// <summary>
         /// 备注
         /// </summary>
         public const string Remark = "Remark";
+
     }
 }
+

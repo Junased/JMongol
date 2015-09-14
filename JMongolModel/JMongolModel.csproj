@@ -67,7 +67,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Table\tBase.cs" />
+    <Compile Include="Table\tAdmin.cs" />
     <Compile Include="Table\tException.cs" />
     <Compile Include="Table\tLog.cs" />
     <Compile Include="Table\tMessage.cs" />
