@@ -48,6 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\AdminDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdminDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SystemConst.cs" />
     <Compile Include="SystemEnum.cs" />
     <Compile Include="Const.cs" />
@@ -75,6 +80,17 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="Entity\AdminDataSet.xsc">
+      <DependentUpon>AdminDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Entity\AdminDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AdminDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Entity\AdminDataSet.xss">
+      <DependentUpon>AdminDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Entity\ConfigDataSet.xsc">
       <DependentUpon>ConfigDataSet.xsd</DependentUpon>
     </None>
