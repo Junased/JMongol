@@ -112,7 +112,7 @@ namespace JMongolDal.Config
         /// <param name="moduleName">操作模块</param>
         /// <param name="tableName">物理表名称</param>
         /// <param name="oid">行记录OID</param>
-        public void WriteLog<T>(T t, LogType logType, int userID, string userIP, string moduleName)
+        public new void WriteLog<T>(T t, LogType logType, int userID, string userIP, string moduleName)
             where T : DataRow
         {
             if (t is ConfigDataSet.tLogRow || t is ConfigDataSet.tExceptionRow) return;
