@@ -56,7 +56,6 @@
     <Compile Include="SystemConst.cs" />
     <Compile Include="SystemEnum.cs" />
     <Compile Include="Const.cs" />
-    <Compile Include="Convert.cs" />
     <Compile Include="Entity\ConfigDataSet.cs">
       <DependentUpon>ConfigDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
