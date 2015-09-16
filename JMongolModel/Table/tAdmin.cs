@@ -1,5 +1,5 @@
 ﻿using System;
-namespace SystemCommon.Table
+namespace JMongolModel.Table
 {
     /// <summary>
     /// 管理员，包含数据库中管理员表的所有字段
