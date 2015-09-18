@@ -75,6 +75,9 @@
     <Compile Include="Table\tException.cs" />
     <Compile Include="Table\tLog.cs" />
     <Compile Include="Table\tMessage.cs" />
+    <Compile Include="Table\tPermission.cs" />
+    <Compile Include="Table\tRole.cs" />
+    <Compile Include="Table\tRolePermission.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
