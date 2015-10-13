@@ -42,6 +42,7 @@
     <Compile Include="AdapterDal.cs" />
     <Compile Include="Admin\AdminDal.cs" />
     <Compile Include="Admin\PermissionDal.cs" />
+    <Compile Include="Admin\RolePermissionDal.cs" />
     <Compile Include="BaseDal.cs" />
     <Compile Include="Config\ExceptionDal.cs" />
     <Compile Include="Config\LogDal.cs" />
