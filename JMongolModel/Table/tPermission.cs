@@ -53,17 +53,17 @@ namespace JMongolModel.Table
         /// <summary>
         /// 权限代码：对应各个栏目代码
         /// </summary>
-        public const string PopedomCode = "PopedomCode";
+        public const string PermissionCode = "PermissionCode";
 
-        /// <summary>
+        /// <summary>Popedom
         /// 权限名称：可以根据具体模块来设定名称
         /// </summary>
-        public const string PopedomName = "PopedomName";
+        public const string PermissionName = "PermissionName";
 
         /// <summary>
         /// 权限说明：权限说明信息
         /// </summary>
-        public const string PopedomDesc = "PopedomDesc";
+        public const string PermissionDesc = "PermissionDesc";
 
         /// <summary>
         /// 选择：是或者否，默认为否，指没有此项权限
@@ -98,7 +98,7 @@ namespace JMongolModel.Table
         /// <summary>
         /// 权限标志：是或者否，是指系统权限，否指用户权限；默认为否
         /// </summary>
-        public const string PopedomFlag = "PopedomFlag";
+        public const string PermissionFlag = "PermissionFlag";
 
         /// <summary>
         /// 备注
