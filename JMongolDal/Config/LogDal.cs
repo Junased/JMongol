@@ -95,11 +95,11 @@ namespace JMongolDal.Config
         /// <param name="moduleName">模块名称</param>
         /// <param name="tableName">表名</param>
         /// <param name="oid">行记录oid</param>
-        public void WriteLog(int userID,string strUserIP,string moduleName,string tableName,int oid)
+        public void WriteLog(int userID,string strUserIP,string moduleName,string tableName,int id)
         {
             ConfigDataSet.tLogRow row = this.InitRow(LogType.View, strUserIP);
             row.SourceContent = tableName;
-            row.UpdateContent = oid.ToString();
+            row.UpdateContent = id.ToString();
             row.ModuleName = moduleName;
             base.Update(row, userID, strUserIP, moduleName);
         }
