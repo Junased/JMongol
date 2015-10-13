@@ -39,13 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminBiz.cs" />
     <Compile Include="BaseBiz.cs" />
+    <Compile Include="ConfigBiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JMongolDal\JMongolDal.csproj">
       <Project>{dc216986-31bf-4eaa-8920-20c8a757931c}</Project>
       <Name>JMongolDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JMongolModel\JMongolModel.csproj">
+      <Project>{de23e8ba-6903-4e8c-9e55-73028da7dc8c}</Project>
+      <Name>JMongolModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
